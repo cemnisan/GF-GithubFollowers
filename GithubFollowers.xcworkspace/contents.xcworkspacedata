@@ -5,6 +5,9 @@
       location = "group:GithubFollowers/GithubFollowers.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:GFComponents">
+   </FileRef>
+   <FileRef
       location = "group:GFNetwork">
    </FileRef>
 </Workspace>
