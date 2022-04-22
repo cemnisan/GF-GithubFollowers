@@ -15,11 +15,16 @@ protocol FollowersViewModelProtocol {
     
     func loadFollowers(pageNumber: Int) async
     func filterFollowersIfSearching(isSearching: Bool, searchText: String?)
-    func selectedFollower(index: Int, isSearching: Bool) -> FollowerPresentation
+    func selectedFollower(index: Int, isSearching: Bool)
 }
 
 protocol FollowersViewModelDelegate: AnyObject {
     func handleOutput(output: FollowersViewModelOutput)
+    func navigate(to router: FollowersViewModelRouter)
+}
+
+enum FollowersViewModelRouter {
+    case userInfo(UserInfoViewModelProtocol)
 }
 
 enum FollowersViewModelOutput {

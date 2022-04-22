@@ -16,7 +16,7 @@ extension FollowerEndpoint {
     var path: String {
         switch self {
         case .follower(let username, let pageNumber):
-            return "/users/\(username)/followers?per_page=100&page=\(pageNumber)"
+            return "/\(username)/followers?per_page=100&page=\(pageNumber)"
         }
     }
 }

@@ -7,28 +7,29 @@
 
 import Foundation
 
-struct User: Codable {
-    var login: String
-    var id: Int
-    var nodeID: String
-    var avatarURL: String
-    var gravatarID: String
-    var url, htmlURL, followersURL: String
-    var followingURL, gistsURL, starredURL: String
-    var subscriptionsURL, organizationsURL, reposURL: String
-    var eventsURL: String
-    var receivedEventsURL: String
-    var type: String
-    var siteAdmin: Bool
-    var name: String
-    var company: String?
-    var blog: String
-    var location: String
-    var email, hireable: String?
-    var bio: String
-    var twitterUsername: String?
-    var publicRepos, publicGists, followers, following: Int
-    var createdAt, updatedAt: Date
+public struct User: Codable {
+    public let login: String
+    public let id: Int
+    public let nodeID: String
+    public let avatarURL: String
+    public var gravatarID: String
+    public let url, htmlURL, followersURL: String
+    public let followingURL, gistsURL, starredURL: String
+    public let subscriptionsURL, organizationsURL, reposURL: String
+    public let eventsURL: String
+    public let receivedEventsURL: String
+    public let type: String
+    public let siteAdmin: Bool
+    public var name: String?
+    public var company: String?
+    public let blog: String?
+    public var location: String?
+    public let hireable: Bool?
+    public var email: String?
+    public var bio: String?
+    public var twitterUsername: String?
+    public let publicRepos, publicGists, followers, following: Int
+    public let createdAt, updatedAt: String
 
     enum CodingKeys: String, CodingKey {
         case login, id

@@ -58,12 +58,12 @@ extension FollowersViewModel {
 extension FollowersViewModel {
     
     func selectedFollower(index: Int,
-                          isSearching: Bool) -> FollowerPresentation {
+                          isSearching: Bool) {
         let activeArray          = isSearching ? filteredFollowers : followers
         let follower             = activeArray[index]
-        let presentationFollewer = FollowerPresentation(follower: follower)
+        let viewModel            = UserInfoViewModel(username: follower.login, service: UserInfoService())
         
-        return presentationFollewer
+        delegate?.navigate(to: .userInfo(viewModel))
     }
 }
 

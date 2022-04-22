@@ -18,7 +18,7 @@ public protocol HTTPEndpoint {
 
 extension HTTPEndpoint {
     var baseURL: String {
-        return "https://api.github.com"
+        return "https://api.github.com/users"
     }
     
     var method: HTTPMethod {

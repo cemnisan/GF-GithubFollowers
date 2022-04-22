@@ -144,6 +144,16 @@ extension FollowersViewController: FollowersViewModelDelegate {
                                        buttonTitle: "OK")
         }
     }
+    
+    func navigate(to router: FollowersViewModelRouter) {
+        
+        switch router {
+        case .userInfo(let viewModel):
+            let viewController = UserInfoBuilder.build(with: viewModel)
+            
+            present(viewController, animated: true)
+        }
+    }
 }
 
 // MARK: - UISearchResults
@@ -171,7 +181,7 @@ extension FollowersViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
-        let _ = viewModel.selectedFollower(index: indexPath.item, isSearching: searchController.isSearching)
+        viewModel.selectedFollower(index: indexPath.item, isSearching: searchController.isSearching)
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView,

@@ -7,10 +7,6 @@
 
 import Foundation
 
-public struct FollowerResults: Codable {
-    let followers: [Follower]
-}
-
 public struct Follower: Codable {
     public var login: String
     public var id: Int
