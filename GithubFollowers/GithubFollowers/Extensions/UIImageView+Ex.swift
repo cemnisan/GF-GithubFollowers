@@ -19,7 +19,7 @@ extension UIImageView {
         }
     }
     
-    @MainActor func updateImage(_ image: UIImage) {
-        self.image = image
+    func updateImage(_ image: UIImage) {
+        DispatchQueue.main.async { self.image = image }
     }
 }

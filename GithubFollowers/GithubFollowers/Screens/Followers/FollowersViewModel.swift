@@ -10,7 +10,9 @@ import GFNetwork
 final class FollowersViewModel: FollowersViewModelProtocol {
     
     var username: String
-    @MainActor private var followers: [Follower] = []
+    var isSearching: Bool = false
+    private var followers: [Follower] = []
+    private var filteredFollowers: [Follower] = []
     
     weak var delegate: FollowersViewModelDelegate?
     private var service: FollowerServiceable
@@ -30,14 +32,14 @@ extension FollowersViewModel {
         let result = await service.getUserFollowers(with: username)
         notify(.isLoading(false))
         
-        await followersResults(results: result)
+        followersResults(results: result)
     }
 }
 
 // MARK: - Results
 extension FollowersViewModel {
     
-    @MainActor private func followersResults(results: Result<[Follower]>) {
+    private func followersResults(results: Result<[Follower]>) {
         switch results {
         case .success(let followers):
             self.followers.append(contentsOf: followers)
@@ -52,10 +54,22 @@ extension FollowersViewModel {
 // MARK: - Follower Helper
 extension FollowersViewModel {
     
-    @MainActor func isFollowersEmpty() -> Bool {
+    func isFollowersEmpty() -> Bool {
         if followers.count == 0 { return true }
         
         return false
+    }
+    
+    func filterFollowersIfNeeded(isSearching: Bool,
+                                 searchText: String?) {
+        switch isSearching {
+        case true:
+            filteredFollowers = followers.filter { $0.login.lowercased().contains(searchText!.lowercased()) }
+            notify(.filterableFollowers(filteredFollowers.map { FollowerPresentation(follower: $0) }))
+        case false:
+            filteredFollowers.removeAll()
+            notify(.filterableFollowers(followers.map { FollowerPresentation(follower: $0) }))
+        }
     }
 }
 

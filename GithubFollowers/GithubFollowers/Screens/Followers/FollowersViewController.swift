@@ -76,9 +76,8 @@ extension FollowersViewController {
     }
     
     private func configureDataSource() {
-        collectionViewDataSource = UICollectionViewDiffableDataSource<Section,
-                                                                      FollowerPresentation>(collectionView: collectionView,
-                                                                                            cellProvider: { collectionView, indexPath, follower in
+        collectionViewDataSource = UICollectionViewDiffableDataSource<Section, FollowerPresentation>(collectionView: collectionView,
+                                                                                                     cellProvider: { collectionView, indexPath, follower in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FollowersCollectionViewCell.reuseID,
                                                           for: indexPath) as! FollowersCollectionViewCell
             cell.update(with: follower)
@@ -110,13 +109,13 @@ extension FollowersViewController {
         snapshot.appendSections([.main])
         snapshot.appendItems(followers)
         
-        collectionViewDataSource.apply(snapshot, animatingDifferences: true)
+        DispatchQueue.main.async { self.collectionViewDataSource.apply(snapshot, animatingDifferences: true) }
     }
     
-    private func updateView(with isFollowersEmpty: Bool) {
+    private func updateView(if isFollowersEmpty: Bool) {
         if isFollowersEmpty {
             let message = "This doesn't have any followers. Go follow them."
-            self.showEmptyStateView(with: message, in: self.view)
+            DispatchQueue.main.async { self.showEmptyStateView(with: message, in: self.view) }
             return
         }
     }
@@ -130,9 +129,14 @@ extension FollowersViewController: FollowersViewModelDelegate {
         switch output {
         case .isLoading(let isLoading):
             isLoading ? showLoadingIndicator() : dissmisLoadingIndicator()
+            
         case .loadFollowers(let followers):
-            updateView(with: viewModel.isFollowersEmpty())
+            updateView(if: viewModel.isFollowersEmpty())
             updateDataSource(on: followers)
+            
+        case .filterableFollowers(let followers):
+            updateDataSource(on: followers)
+            
         case .requestError(let error):
             presentGFAlertOnMainThread(title: "Something went wrong",
                                        message: error.localizedDescription,
@@ -141,20 +145,25 @@ extension FollowersViewController: FollowersViewModelDelegate {
     }
 }
 
+// MARK: - UICollectionView Delegate
+extension FollowersViewController: UICollectionViewDelegate {}
+
+// MARK: - UISearchResults
 extension FollowersViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        
+        guard let searchText = searchController.searchBar.text, !searchText.isEmpty else {
+            viewModel.filterFollowersIfNeeded(isSearching: false, searchText: nil)
+            return
+        }
+        viewModel.filterFollowersIfNeeded(isSearching: true, searchText: searchText)
     }
 }
 
+// MARK: - USearchBar Delegate
 extension FollowersViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        
+        viewModel.filterFollowersIfNeeded(isSearching: false, searchText: nil)
     }
-}
-
-extension FollowersViewController: UICollectionViewDelegate {
-    
 }
