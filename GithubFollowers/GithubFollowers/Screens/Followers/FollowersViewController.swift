@@ -30,7 +30,7 @@ final class FollowersViewController: UIViewController {
         
         configure()
         
-        Task { await viewModel.loadFollowers(pageNumber:1) }
+        Task(priority: .background) { await viewModel.loadFollowers(pageNumber: 1) }
     }
 }
 
@@ -122,8 +122,12 @@ extension FollowersViewController: FollowersViewModelDelegate {
         switch output {
         case .loadFollowers(let followers):
             updateDataSource(on: followers)
+        case .isLoading(let isLoading):
+            isLoading ? showLoadingIndicator() : dissmisLoadingIndicator()
         case .requestError(let error):
-            print(error)
+            presentGFAlertOnMainThread(title: "Something went wrong",
+                                       message: error.localizedDescription,
+                                       buttonTitle: "OK")
         }
     }
 }

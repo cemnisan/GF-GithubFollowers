@@ -20,5 +20,6 @@ protocol FollowersViewModelDelegate: AnyObject {
 
 enum FollowersViewModelOutput {
     case loadFollowers([FollowerPresentation])
+    case isLoading(Bool)
     case requestError(HTTPRequestError)
 }

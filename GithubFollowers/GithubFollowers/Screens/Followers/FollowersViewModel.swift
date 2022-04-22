@@ -26,7 +26,9 @@ final class FollowersViewModel: FollowersViewModelProtocol {
 extension FollowersViewModel {
     
     func loadFollowers(pageNumber: Int) async {
+        notify(.isLoading(true))
         let result = await service.getUserFollowers(with: username)
+        notify(.isLoading(false))
         
         await followersResults(results: result)
     }

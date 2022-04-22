@@ -80,7 +80,8 @@ extension GFAlertViewController {
     
     private func configureAlertMessage() {
         containerView.addSubview(alertBodyLabel)
-        alertBodyLabel.text = alertMessage
+        alertBodyLabel.text          = alertMessage
+        alertBodyLabel.numberOfLines = 3
         
         NSLayoutConstraint.activate([
             alertBodyLabel.topAnchor.constraint(equalTo: alertTitleLabel.bottomAnchor, constant: 8),

@@ -93,6 +93,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		7E0F35DC281301E30003D114 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				7E0F35D22812E7030003D114 /* Presentations */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		7EAB019028117D3B00678417 = {
 			isa = PBXGroup;
 			children = (
@@ -114,11 +122,11 @@
 			isa = PBXGroup;
 			children = (
 				7EAB01B328117D6E00678417 /* App */,
+				7E0F35DC281301E30003D114 /* Common */,
 				7EAB01CA28119D2600678417 /* Extensions */,
 				7EAB01C728119C4A00678417 /* Utilities */,
 				7EAB01B428117D7300678417 /* Supporting Files */,
 				7EAB01B528117D7B00678417 /* Screens */,
-				7E0F35D22812E7030003D114 /* Presentations */,
 				7EAB01AA28117D3B00678417 /* Info.plist */,
 			);
 			path = GithubFollowers;
