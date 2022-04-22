@@ -20,7 +20,7 @@ public final class GFButton: UIButton {
     }
     
     public convenience init(backgrounColor: UIColor,
-                     title: String) {
+                            title: String) {
         self.init(frame: .zero)
         
         self.backgroundColor = backgrounColor

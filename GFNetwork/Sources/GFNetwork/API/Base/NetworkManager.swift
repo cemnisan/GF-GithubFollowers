@@ -18,7 +18,7 @@ extension NetworkManager {
     
     public func execute<M: Codable,
                         E: HTTPEndpoint>(model: M.Type,
-                                     endpoint: E) async -> Result<M>
+                                         endpoint: E) async -> Result<M>
     {
         guard let request = endpoint.url else { return .failure(.invalidURL) }
         
@@ -30,7 +30,7 @@ extension NetworkManager {
             case 200...299:
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .iso8601
-                guard let decodedResponse = try? decoder.decode(model, from: data) else { return .failure(.decode)}
+                guard let decodedResponse = try? decoder.decode(model, from: data) else { return .failure(.decode) }
                 return .success(decodedResponse)
             case 401:
                 return .failure(.unauthorized)

@@ -18,6 +18,12 @@ public final class GFTextFields: UITextField {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    public convenience init(placeholder: String) {
+        self.init(frame: .zero)
+        
+        self.placeholder = placeholder
+    }
 }
 
 extension GFTextFields {
@@ -38,7 +44,6 @@ extension GFTextFields {
         autocorrectionType        = .no
         returnKeyType             = .go
         clearButtonMode           = .whileEditing
-        placeholder               = "Enter a username"
         translatesAutoresizingMaskIntoConstraints = false
     }
 }

@@ -14,6 +14,7 @@ struct K {
     }
     
     struct Title {
+        static let searchPlaceholder = "Enter a username"
         static let searchButtonTitle = "Get Followers"
     }
 }

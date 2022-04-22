@@ -10,25 +10,38 @@ import GFComponents
 
 final class SearchViewController: UIViewController {
     
-    let logoImageView    = GFImageView(image: K.Image.logoImage)
-    let searchTextField  = GFTextFields(frame: .zero)
-    let searchButton     = GFButton(backgrounColor: .systemGreen, title: K.Title.searchButtonTitle)
+    private let logoImageView    = GFImageView(image: K.Image.logoImage)
+    private let searchTextField  = GFTextFields(placeholder: K.Title.searchPlaceholder)
+    private let searchButton     = GFButton(backgrounColor: .systemGreen, title: K.Title.searchButtonTitle)
     
-    let padding: CGFloat = 50
+    var isUsernameEmpty: Bool { return searchTextField.text!.isEmpty }
+    
+    var viewModel: SearchViewModel!
+    
+    private let padding: CGFloat = 50
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configure()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        searchTextField.text = ""
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
 }
 
+// MARK: - Configure
 extension SearchViewController {
     
     private func configure() {
         view.addSubviews(logoImageView, searchTextField, searchButton)
         
         configureViewController()
+        configureViewModel()
         configureLogo()
         configureSearchTextField()
         configureSearchButton()
@@ -36,6 +49,10 @@ extension SearchViewController {
     
     private func configureViewController() {
         view.backgroundColor = .systemBackground
+    }
+    
+    private func configureViewModel() {
+        viewModel.delegate = self
     }
     
     private func configureLogo() {
@@ -48,6 +65,8 @@ extension SearchViewController {
     }
     
     private func configureSearchTextField() {
+        searchTextField.delegate = self
+        
         NSLayoutConstraint.activate([
             searchTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: padding),
             searchTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
@@ -57,11 +76,51 @@ extension SearchViewController {
     }
     
     private func configureSearchButton() {
+        searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+        
         NSLayoutConstraint.activate([
             searchButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding),
             searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             searchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             searchButton.heightAnchor.constraint(equalToConstant: padding)
         ])
+    }
+}
+
+// MARK: - Button Tapped
+extension SearchViewController {
+    
+    @objc
+    private func searchButtonTapped() {
+        guard !isUsernameEmpty else {
+            presentGFAlertOnMainThread(title: "Something Went Wrong", message: "Please give a username?", buttonTitle: "OK")
+            return
+        }
+        
+        searchTextField.resignFirstResponder()
+        viewModel.getFollowersButtonDidTapped(username: searchTextField.text!)
+    }
+}
+
+// MARK: - SearchViewModel Delegate
+extension SearchViewController: SearchViewModelDelegate {
+    
+    func navigate(to router: SearchViewModelRouter) {
+        switch router {
+        case .followers(let followersViewModel):
+            let viewController = FollowersBuilder.build(with: followersViewModel)
+            
+            navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+}
+
+// MARK: - UITextField Delegate
+extension SearchViewController: UITextFieldDelegate {
+  
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchButtonTapped()
+        
+        return true
     }
 }

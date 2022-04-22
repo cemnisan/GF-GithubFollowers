@@ -8,6 +8,7 @@
 import Foundation
 
 public final class FollowerService {
+    
     public init() { }
 }
 

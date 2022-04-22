@@ -11,6 +11,7 @@ final class SearchBuilder {
     
     static func build() -> UINavigationController {
         let viewController = SearchViewController()
+        viewController.viewModel = SearchViewModel()
         viewController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         
         return UINavigationController(rootViewController: viewController)

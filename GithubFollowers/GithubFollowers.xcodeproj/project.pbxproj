@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E6DD3D82812DEEC001FC701 /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6DD3D72812DEEC001FC701 /* UIViewController+Ex.swift */; };
+		7E9993152811BF72003C3723 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9993142811BF72003C3723 /* SearchViewModel.swift */; };
+		7E9993172811BF78003C3723 /* SearchViewModelContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9993162811BF78003C3723 /* SearchViewModelContracts.swift */; };
 		7EAB019D28117D3B00678417 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAB019C28117D3B00678417 /* AppDelegate.swift */; };
 		7EAB019F28117D3B00678417 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAB019E28117D3B00678417 /* SceneDelegate.swift */; };
 		7EAB01A128117D3B00678417 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAB01A028117D3B00678417 /* SearchViewController.swift */; };
@@ -21,9 +24,16 @@
 		7EAB01C6281197CF00678417 /* GFComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 7EAB01C5281197CF00678417 /* GFComponents */; };
 		7EAB01C928119C5700678417 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAB01C828119C5700678417 /* Constants.swift */; };
 		7EAB01CC28119D2E00678417 /* UIView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAB01CB28119D2E00678417 /* UIView+Ex.swift */; };
+		7EAB01CF2811A19600678417 /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAB01CE2811A19600678417 /* FollowersViewController.swift */; };
+		7EAB01D12811A1B400678417 /* FollowersBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAB01D02811A1B400678417 /* FollowersBuilder.swift */; };
+		7EAB01D32811A1EF00678417 /* FollowersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAB01D22811A1EF00678417 /* FollowersViewModel.swift */; };
+		7EAB01D52811A1F700678417 /* FollowersViewModelContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAB01D42811A1F700678417 /* FollowersViewModelContracts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E6DD3D72812DEEC001FC701 /* UIViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
+		7E9993142811BF72003C3723 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		7E9993162811BF78003C3723 /* SearchViewModelContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelContracts.swift; sourceTree = "<group>"; };
 		7EAB019928117D3B00678417 /* GithubFollowers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubFollowers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EAB019C28117D3B00678417 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EAB019E28117D3B00678417 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +48,10 @@
 		7EAB01C22811932F00678417 /* FavoritesBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesBuilder.swift; sourceTree = "<group>"; };
 		7EAB01C828119C5700678417 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7EAB01CB28119D2E00678417 /* UIView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ex.swift"; sourceTree = "<group>"; };
+		7EAB01CE2811A19600678417 /* FollowersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersViewController.swift; sourceTree = "<group>"; };
+		7EAB01D02811A1B400678417 /* FollowersBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersBuilder.swift; sourceTree = "<group>"; };
+		7EAB01D22811A1EF00678417 /* FollowersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersViewModel.swift; sourceTree = "<group>"; };
+		7EAB01D42811A1F700678417 /* FollowersViewModelContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersViewModelContracts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +127,7 @@
 		7EAB01B528117D7B00678417 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				7EAB01CD2811A18C00678417 /* Followers */,
 				7EAB01BF2811930600678417 /* Favorites */,
 				7EAB01B82811909A00678417 /* Search */,
 			);
@@ -124,6 +139,8 @@
 			children = (
 				7EAB01A028117D3B00678417 /* SearchViewController.swift */,
 				7EAB01B9281190A400678417 /* SearchBuilder.swift */,
+				7E9993142811BF72003C3723 /* SearchViewModel.swift */,
+				7E9993162811BF78003C3723 /* SearchViewModelContracts.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -149,8 +166,20 @@
 			isa = PBXGroup;
 			children = (
 				7EAB01CB28119D2E00678417 /* UIView+Ex.swift */,
+				7E6DD3D72812DEEC001FC701 /* UIViewController+Ex.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7EAB01CD2811A18C00678417 /* Followers */ = {
+			isa = PBXGroup;
+			children = (
+				7EAB01CE2811A19600678417 /* FollowersViewController.swift */,
+				7EAB01D02811A1B400678417 /* FollowersBuilder.swift */,
+				7EAB01D22811A1EF00678417 /* FollowersViewModel.swift */,
+				7EAB01D42811A1F700678417 /* FollowersViewModelContracts.swift */,
+			);
+			path = Followers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,14 +258,21 @@
 			files = (
 				7EAB01A128117D3B00678417 /* SearchViewController.swift in Sources */,
 				7EAB019D28117D3B00678417 /* AppDelegate.swift in Sources */,
+				7E6DD3D82812DEEC001FC701 /* UIViewController+Ex.swift in Sources */,
 				7EAB01C12811930F00678417 /* FavoritesViewController.swift in Sources */,
 				7EAB01C32811932F00678417 /* FavoritesBuilder.swift in Sources */,
 				7EAB01BE2811910000678417 /* AppRouter.swift in Sources */,
+				7EAB01D12811A1B400678417 /* FollowersBuilder.swift in Sources */,
+				7E9993152811BF72003C3723 /* SearchViewModel.swift in Sources */,
 				7EAB01BC281190FB00678417 /* AppContainer.swift in Sources */,
+				7EAB01CF2811A19600678417 /* FollowersViewController.swift in Sources */,
 				7EAB019F28117D3B00678417 /* SceneDelegate.swift in Sources */,
 				7EAB01BA281190A400678417 /* SearchBuilder.swift in Sources */,
 				7EAB01C928119C5700678417 /* Constants.swift in Sources */,
+				7E9993172811BF78003C3723 /* SearchViewModelContracts.swift in Sources */,
 				7EAB01CC28119D2E00678417 /* UIView+Ex.swift in Sources */,
+				7EAB01D52811A1F700678417 /* FollowersViewModelContracts.swift in Sources */,
+				7EAB01D32811A1EF00678417 /* FollowersViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
