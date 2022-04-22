@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol FollowerServiceable {
-    func getUserFollowers(with username: String) async -> Result<[Follower]>
+    func getUserFollowers(with username: String, pageNumber: Int) async -> Result<[Follower]>
 }

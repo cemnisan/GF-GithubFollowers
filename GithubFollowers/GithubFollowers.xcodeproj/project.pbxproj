@@ -11,6 +11,7 @@
 		7E0F35D72812E9760003D114 /* FollowersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F35D62812E9760003D114 /* FollowersCollectionViewCell.swift */; };
 		7E0F35D92812F9730003D114 /* ImageLoaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F35D82812F9730003D114 /* ImageLoaders.swift */; };
 		7E0F35DB2812FB8B0003D114 /* UIImageView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F35DA2812FB8B0003D114 /* UIImageView+Ex.swift */; };
+		7E45138028133B270053C896 /* UISearchController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45137F28133B270053C896 /* UISearchController+Ex.swift */; };
 		7E6DD3D82812DEEC001FC701 /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6DD3D72812DEEC001FC701 /* UIViewController+Ex.swift */; };
 		7E6DD3DA2812E081001FC701 /* UITextField+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6DD3D92812E081001FC701 /* UITextField+Ex.swift */; };
 		7E9993152811BF72003C3723 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9993142811BF72003C3723 /* SearchViewModel.swift */; };
@@ -40,6 +41,7 @@
 		7E0F35D62812E9760003D114 /* FollowersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersCollectionViewCell.swift; sourceTree = "<group>"; };
 		7E0F35D82812F9730003D114 /* ImageLoaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaders.swift; sourceTree = "<group>"; };
 		7E0F35DA2812FB8B0003D114 /* UIImageView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ex.swift"; sourceTree = "<group>"; };
+		7E45137F28133B270053C896 /* UISearchController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchController+Ex.swift"; sourceTree = "<group>"; };
 		7E6DD3D72812DEEC001FC701 /* UIViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
 		7E6DD3D92812E081001FC701 /* UITextField+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ex.swift"; sourceTree = "<group>"; };
 		7E9993142811BF72003C3723 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				7E6DD3D72812DEEC001FC701 /* UIViewController+Ex.swift */,
 				7E6DD3D92812E081001FC701 /* UITextField+Ex.swift */,
 				7E0F35DA2812FB8B0003D114 /* UIImageView+Ex.swift */,
+				7E45137F28133B270053C896 /* UISearchController+Ex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				7E6DD3D82812DEEC001FC701 /* UIViewController+Ex.swift in Sources */,
 				7EAB01C12811930F00678417 /* FavoritesViewController.swift in Sources */,
 				7EAB01C32811932F00678417 /* FavoritesBuilder.swift in Sources */,
+				7E45138028133B270053C896 /* UISearchController+Ex.swift in Sources */,
 				7E0F35D92812F9730003D114 /* ImageLoaders.swift in Sources */,
 				7EAB01BE2811910000678417 /* AppRouter.swift in Sources */,
 				7EAB01D12811A1B400678417 /* FollowersBuilder.swift in Sources */,

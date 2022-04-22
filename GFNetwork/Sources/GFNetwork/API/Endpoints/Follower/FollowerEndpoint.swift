@@ -8,15 +8,15 @@
 import Foundation
 
 enum FollowerEndpoint: HTTPEndpoint {
-    case follower(username: String)
+    case follower(username: String, pageNumber: Int)
 }
 
 extension FollowerEndpoint {
     
     var path: String {
         switch self {
-        case .follower(let username):
-            return "/users/\(username)/followers?per_page=100&page=\(1)"
+        case .follower(let username, let pageNumber):
+            return "/users/\(username)/followers?per_page=100&page=\(pageNumber)"
         }
     }
 }

@@ -10,7 +10,6 @@ import GFNetwork
 final class FollowersViewModel: FollowersViewModelProtocol {
     
     var username: String
-    var isSearching: Bool = false
     private var followers: [Follower] = []
     private var filteredFollowers: [Follower] = []
     
@@ -29,7 +28,7 @@ extension FollowersViewModel {
     
     func loadFollowers(pageNumber: Int) async {
         notify(.isLoading(true))
-        let result = await service.getUserFollowers(with: username)
+        let result = await service.getUserFollowers(with: username, pageNumber: pageNumber)
         notify(.isLoading(false))
         
         followersResults(results: result)
@@ -51,6 +50,19 @@ extension FollowersViewModel {
     }
 }
 
+// MARK: - CollectionView Operations
+extension FollowersViewModel {
+    
+    func selectedFollower(index: Int,
+                          isSearching: Bool) -> FollowerPresentation {
+        let activeArray          = isSearching ? filteredFollowers : followers
+        let follower             = activeArray[index]
+        let presentationFollewer = FollowerPresentation(follower: follower)
+        
+        return presentationFollewer
+    }
+}
+
 // MARK: - Follower Helper
 extension FollowersViewModel {
     
@@ -60,7 +72,7 @@ extension FollowersViewModel {
         return false
     }
     
-    func filterFollowersIfNeeded(isSearching: Bool,
+    func filterFollowersIfSearching(isSearching: Bool,
                                  searchText: String?) {
         switch isSearching {
         case true:

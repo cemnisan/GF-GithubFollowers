@@ -14,6 +14,9 @@ final class FollowersViewController: UIViewController {
     private var viewModel: FollowersViewModelProtocol!
     private var collectionView: UICollectionView!
     private var collectionViewDataSource: UICollectionViewDiffableDataSource<Section, FollowerPresentation>!
+    private var searchController: UISearchController!
+    
+    private var pageNumber = 1
     
     init(viewModel: FollowersViewModelProtocol) {
         super.init(nibName: nil, bundle: nil)
@@ -29,8 +32,7 @@ final class FollowersViewController: UIViewController {
         super.viewDidLoad()
         
         configure()
-        
-        Task(priority: .background) { await viewModel.loadFollowers(pageNumber: 1) }
+        bindFollowers()
     }
 }
 
@@ -52,7 +54,7 @@ extension FollowersViewController {
     }
     
     private func configureSearchController() {
-        let searchController                                   = UISearchController()
+        searchController                                       = UISearchController()
         searchController.searchResultsUpdater                  = self
         searchController.searchBar.delegate                    = self
         searchController.searchBar.placeholder                 = "Search for a username"
@@ -65,8 +67,7 @@ extension FollowersViewController {
     }
     
     private func configureCollectionView() {
-        collectionView = UICollectionView(frame: view.bounds,
-                                          collectionViewLayout: createThreeColumnFlowLayout())
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createThreeColumnFlowLayout())
         view.addSubview(collectionView)
         
         collectionView.backgroundColor = .systemBackground
@@ -145,18 +146,15 @@ extension FollowersViewController: FollowersViewModelDelegate {
     }
 }
 
-// MARK: - UICollectionView Delegate
-extension FollowersViewController: UICollectionViewDelegate {}
-
 // MARK: - UISearchResults
 extension FollowersViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        guard let searchText = searchController.searchBar.text, !searchText.isEmpty else {
-            viewModel.filterFollowersIfNeeded(isSearching: false, searchText: nil)
+        guard searchController.isSearching else {
+            viewModel.filterFollowersIfSearching(isSearching: false, searchText: nil)
             return
         }
-        viewModel.filterFollowersIfNeeded(isSearching: true, searchText: searchText)
+        viewModel.filterFollowersIfSearching(isSearching: true, searchText: searchController.searchBar.text)
     }
 }
 
@@ -164,6 +162,34 @@ extension FollowersViewController: UISearchResultsUpdating {
 extension FollowersViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        viewModel.filterFollowersIfNeeded(isSearching: false, searchText: nil)
+        viewModel.filterFollowersIfSearching(isSearching: false, searchText: nil)
+    }
+}
+
+// MARK: - UICollectionView Delegate
+extension FollowersViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
+        let _ = viewModel.selectedFollower(index: indexPath.item, isSearching: searchController.isSearching)
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView,
+                                  willDecelerate decelerate: Bool) {
+        let offsetY         = scrollView.contentOffset.y
+        let contentHeight   = scrollView.contentSize.height
+        let height          = scrollView.frame.size.height
+        
+        if offsetY > contentHeight - height {
+            pageNumber += 1
+            bindFollowers()
+        }
+    }
+}
+
+extension FollowersViewController {
+    
+    private func bindFollowers() {
+        Task(priority: .background) { await viewModel.loadFollowers(pageNumber:pageNumber) }
     }
 }

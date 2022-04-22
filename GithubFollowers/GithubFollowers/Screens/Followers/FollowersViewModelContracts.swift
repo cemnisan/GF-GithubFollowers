@@ -9,13 +9,12 @@ import GFNetwork
 
 protocol FollowersViewModelProtocol {
     var username: String { get }
-    var isSearching: Bool { get set }
     var delegate: FollowersViewModelDelegate? { get set }
     
     func loadFollowers(pageNumber: Int) async
     func isFollowersEmpty() -> Bool
-    func filterFollowersIfNeeded(isSearching: Bool,
-                                 searchText: String?)
+    func filterFollowersIfSearching(isSearching: Bool, searchText: String?)
+    func selectedFollower(index: Int, isSearching: Bool) -> FollowerPresentation
 }
 
 protocol FollowersViewModelDelegate: AnyObject {

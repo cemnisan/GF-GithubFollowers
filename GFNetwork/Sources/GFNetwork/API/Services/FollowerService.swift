@@ -14,8 +14,8 @@ public final class FollowerService {
 
 extension FollowerService: FollowerServiceable {
     
-    public func getUserFollowers(with username: String) async -> Result<[Follower]> {
+    public func getUserFollowers(with username: String, pageNumber: Int) async -> Result<[Follower]> {
         return await NetworkManager.shared.execute(model: [Follower].self,
-                                                   endpoint: FollowerEndpoint.follower(username: username))
+                                                   endpoint: FollowerEndpoint.follower(username: username, pageNumber: pageNumber))
     }
 }
