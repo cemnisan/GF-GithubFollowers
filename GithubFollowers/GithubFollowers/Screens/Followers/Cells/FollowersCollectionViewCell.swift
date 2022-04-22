@@ -62,7 +62,7 @@ extension FollowersCollectionViewCell {
 extension FollowersCollectionViewCell {
     
     func update(with followers: FollowerPresentation) {
-        userImageView.image = #imageLiteral(resourceName: "avatar-placeholder")
+        userImageView.setUserImage(with: followers.avatarURL)
         usernameLabel.text  = followers.login
     }
 }

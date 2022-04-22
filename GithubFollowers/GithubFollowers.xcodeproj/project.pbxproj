@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7E0F35D42812E7640003D114 /* FollowerPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F35D32812E7640003D114 /* FollowerPresentation.swift */; };
 		7E0F35D72812E9760003D114 /* FollowersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F35D62812E9760003D114 /* FollowersCollectionViewCell.swift */; };
+		7E0F35D92812F9730003D114 /* ImageLoaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F35D82812F9730003D114 /* ImageLoaders.swift */; };
+		7E0F35DB2812FB8B0003D114 /* UIImageView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F35DA2812FB8B0003D114 /* UIImageView+Ex.swift */; };
 		7E6DD3D82812DEEC001FC701 /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6DD3D72812DEEC001FC701 /* UIViewController+Ex.swift */; };
 		7E6DD3DA2812E081001FC701 /* UITextField+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6DD3D92812E081001FC701 /* UITextField+Ex.swift */; };
 		7E9993152811BF72003C3723 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9993142811BF72003C3723 /* SearchViewModel.swift */; };
@@ -36,6 +38,8 @@
 /* Begin PBXFileReference section */
 		7E0F35D32812E7640003D114 /* FollowerPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerPresentation.swift; sourceTree = "<group>"; };
 		7E0F35D62812E9760003D114 /* FollowersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersCollectionViewCell.swift; sourceTree = "<group>"; };
+		7E0F35D82812F9730003D114 /* ImageLoaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaders.swift; sourceTree = "<group>"; };
+		7E0F35DA2812FB8B0003D114 /* UIImageView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ex.swift"; sourceTree = "<group>"; };
 		7E6DD3D72812DEEC001FC701 /* UIViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
 		7E6DD3D92812E081001FC701 /* UITextField+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ex.swift"; sourceTree = "<group>"; };
 		7E9993142811BF72003C3723 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -109,12 +113,12 @@
 		7EAB019B28117D3B00678417 /* GithubFollowers */ = {
 			isa = PBXGroup;
 			children = (
-				7E0F35D22812E7030003D114 /* Presentations */,
 				7EAB01B328117D6E00678417 /* App */,
 				7EAB01CA28119D2600678417 /* Extensions */,
 				7EAB01C728119C4A00678417 /* Utilities */,
 				7EAB01B428117D7300678417 /* Supporting Files */,
 				7EAB01B528117D7B00678417 /* Screens */,
+				7E0F35D22812E7030003D114 /* Presentations */,
 				7EAB01AA28117D3B00678417 /* Info.plist */,
 			);
 			path = GithubFollowers;
@@ -181,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				7EAB01C828119C5700678417 /* Constants.swift */,
+				7E0F35D82812F9730003D114 /* ImageLoaders.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -191,6 +196,7 @@
 				7EAB01CB28119D2E00678417 /* UIView+Ex.swift */,
 				7E6DD3D72812DEEC001FC701 /* UIViewController+Ex.swift */,
 				7E6DD3D92812E081001FC701 /* UITextField+Ex.swift */,
+				7E0F35DA2812FB8B0003D114 /* UIImageView+Ex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -286,6 +292,7 @@
 				7E6DD3D82812DEEC001FC701 /* UIViewController+Ex.swift in Sources */,
 				7EAB01C12811930F00678417 /* FavoritesViewController.swift in Sources */,
 				7EAB01C32811932F00678417 /* FavoritesBuilder.swift in Sources */,
+				7E0F35D92812F9730003D114 /* ImageLoaders.swift in Sources */,
 				7EAB01BE2811910000678417 /* AppRouter.swift in Sources */,
 				7EAB01D12811A1B400678417 /* FollowersBuilder.swift in Sources */,
 				7E9993152811BF72003C3723 /* SearchViewModel.swift in Sources */,
@@ -295,6 +302,7 @@
 				7E0F35D42812E7640003D114 /* FollowerPresentation.swift in Sources */,
 				7E0F35D72812E9760003D114 /* FollowersCollectionViewCell.swift in Sources */,
 				7EAB01BA281190A400678417 /* SearchBuilder.swift in Sources */,
+				7E0F35DB2812FB8B0003D114 /* UIImageView+Ex.swift in Sources */,
 				7EAB01C928119C5700678417 /* Constants.swift in Sources */,
 				7E9993172811BF78003C3723 /* SearchViewModelContracts.swift in Sources */,
 				7E6DD3DA2812E081001FC701 /* UITextField+Ex.swift in Sources */,

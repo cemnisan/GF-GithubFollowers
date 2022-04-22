@@ -52,12 +52,12 @@ extension FollowersViewController {
     }
     
     private func configureSearchController() {
-        let searchController                                  = UISearchController()
-        searchController.searchResultsUpdater                 = self
-        searchController.searchBar.delegate                   = self
-        searchController.searchBar.placeholder                = "Search for a username"
-        searchController.obscuresBackgroundDuringPresentation = false
-        navigationItem.searchController                       = searchController
+        let searchController                                   = UISearchController()
+        searchController.searchResultsUpdater                  = self
+        searchController.searchBar.delegate                    = self
+        searchController.searchBar.placeholder                 = "Search for a username"
+        searchController.obscuresBackgroundDuringPresentation  = false
+        navigationItem.searchController                        = searchController
     }
     
     private func configureViewModel() {
@@ -68,9 +68,11 @@ extension FollowersViewController {
         collectionView = UICollectionView(frame: view.bounds,
                                           collectionViewLayout: createThreeColumnFlowLayout())
         view.addSubview(collectionView)
+        
         collectionView.backgroundColor = .systemBackground
         collectionView.delegate        = self
-        collectionView.register(FollowersCollectionViewCell.self, forCellWithReuseIdentifier: FollowersCollectionViewCell.reuseID)
+        collectionView.register(FollowersCollectionViewCell.self,
+                                forCellWithReuseIdentifier: FollowersCollectionViewCell.reuseID)
     }
     
     private func configureDataSource() {

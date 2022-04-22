@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 public final class NetworkManager {
     
@@ -18,8 +19,7 @@ extension NetworkManager {
     
     public func execute<M: Codable,
                         E: HTTPEndpoint>(model: M.Type,
-                                         endpoint: E) async -> Result<M>
-    {
+                                         endpoint: E) async -> Result<M> {
         guard let request = endpoint.url else { return .failure(.invalidURL) }
         
         do {
@@ -39,6 +39,22 @@ extension NetworkManager {
             }
         } catch {
             return .failure(.unknown)
+        }
+    }
+    
+    public func execute(with urlString: String) async throws -> UIImage {
+        guard let url = URL(string: urlString) else { throw HTTPRequestError.invalidURL }
+        let request = URLRequest(url: url)
+        
+        do {
+            let (data, response) = try await URLSession.shared.data(for: request)
+            
+            guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw HTTPRequestError.noResponse }
+            guard let image = UIImage(data: data) else { throw HTTPRequestError.decode }
+            
+            return image
+        } catch {
+            throw HTTPRequestError.unknown
         }
     }
 }
