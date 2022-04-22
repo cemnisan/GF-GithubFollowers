@@ -10,12 +10,15 @@ import GFNetwork
 final class FollowersViewModel: FollowersViewModelProtocol {
     
     var username: String
-    private var followers: [Follower] = []
+    var isFollowersEmpty: Bool { followers.count == 0 ? true : false }
+    var hasMoreFollowers = false
+    
+    private var followers: [Follower]         = []
     private var filteredFollowers: [Follower] = []
     
     weak var delegate: FollowersViewModelDelegate?
     private var service: FollowerServiceable
-    
+        
     init(service: FollowerServiceable,
          username: String) {
         self.service  = service
@@ -41,6 +44,7 @@ extension FollowersViewModel {
     private func followersResults(results: Result<[Follower]>) {
         switch results {
         case .success(let followers):
+            if followers.count < 100 { hasMoreFollowers = true }
             self.followers.append(contentsOf: followers)
             let followersPresentation = self.followers.map { FollowerPresentation(follower: $0) }
             notify(.loadFollowers(followersPresentation))
@@ -65,12 +69,6 @@ extension FollowersViewModel {
 
 // MARK: - Follower Helper
 extension FollowersViewModel {
-    
-    func isFollowersEmpty() -> Bool {
-        if followers.count == 0 { return true }
-        
-        return false
-    }
     
     func filterFollowersIfSearching(isSearching: Bool,
                                  searchText: String?) {

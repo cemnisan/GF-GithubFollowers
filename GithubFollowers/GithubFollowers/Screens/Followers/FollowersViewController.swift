@@ -132,7 +132,7 @@ extension FollowersViewController: FollowersViewModelDelegate {
             isLoading ? showLoadingIndicator() : dissmisLoadingIndicator()
             
         case .loadFollowers(let followers):
-            updateView(if: viewModel.isFollowersEmpty())
+            updateView(if: viewModel.isFollowersEmpty)
             updateDataSource(on: followers)
             
         case .filterableFollowers(let followers):
@@ -181,6 +181,8 @@ extension FollowersViewController: UICollectionViewDelegate {
         let height          = scrollView.frame.size.height
         
         if offsetY > contentHeight - height {
+            guard !viewModel.hasMoreFollowers else { return }
+            
             pageNumber += 1
             bindFollowers()
         }
