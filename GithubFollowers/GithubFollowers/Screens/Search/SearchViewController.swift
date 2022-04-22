@@ -13,9 +13,7 @@ final class SearchViewController: UIViewController {
     private let logoImageView    = GFImageView(image: K.Image.logoImage)
     private let searchTextField  = GFTextFields(placeholder: K.Title.searchPlaceholder)
     private let searchButton     = GFButton(backgrounColor: .systemGreen, title: K.Title.searchButtonTitle)
-    
-    var isUsernameEmpty: Bool { return searchTextField.text!.isEmpty }
-    
+        
     var viewModel: SearchViewModel!
     
     private let padding: CGFloat = 50
@@ -92,8 +90,10 @@ extension SearchViewController {
     
     @objc
     private func searchButtonTapped() {
-        guard !isUsernameEmpty else {
-            presentGFAlertOnMainThread(title: "Something Went Wrong", message: "Please give a username?", buttonTitle: "OK")
+        guard !searchTextField.isUsernameEmpty else {
+            presentGFAlertOnMainThread(title: "Something Went Wrong",
+                                       message: "Please give a username?",
+                                       buttonTitle: "OK")
             return
         }
         

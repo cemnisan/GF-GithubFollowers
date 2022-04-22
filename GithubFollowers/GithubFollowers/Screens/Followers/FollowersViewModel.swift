@@ -39,7 +39,8 @@ extension FollowersViewModel {
         switch results {
         case .success(let followers):
             self.followers.append(contentsOf: followers)
-            notify(.loadFollowers)
+            let followersPresentation = self.followers.map { FollowerPresentation(follower: $0) }
+            notify(.loadFollowers(followersPresentation))
         case .failure(let error):
             notify(.requestError(error))
         }

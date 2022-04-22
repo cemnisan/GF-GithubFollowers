@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E0F35D42812E7640003D114 /* FollowerPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F35D32812E7640003D114 /* FollowerPresentation.swift */; };
+		7E0F35D72812E9760003D114 /* FollowersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F35D62812E9760003D114 /* FollowersCollectionViewCell.swift */; };
 		7E6DD3D82812DEEC001FC701 /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6DD3D72812DEEC001FC701 /* UIViewController+Ex.swift */; };
+		7E6DD3DA2812E081001FC701 /* UITextField+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6DD3D92812E081001FC701 /* UITextField+Ex.swift */; };
 		7E9993152811BF72003C3723 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9993142811BF72003C3723 /* SearchViewModel.swift */; };
 		7E9993172811BF78003C3723 /* SearchViewModelContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9993162811BF78003C3723 /* SearchViewModelContracts.swift */; };
 		7EAB019D28117D3B00678417 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAB019C28117D3B00678417 /* AppDelegate.swift */; };
@@ -31,7 +34,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E0F35D32812E7640003D114 /* FollowerPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerPresentation.swift; sourceTree = "<group>"; };
+		7E0F35D62812E9760003D114 /* FollowersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersCollectionViewCell.swift; sourceTree = "<group>"; };
 		7E6DD3D72812DEEC001FC701 /* UIViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
+		7E6DD3D92812E081001FC701 /* UITextField+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ex.swift"; sourceTree = "<group>"; };
 		7E9993142811BF72003C3723 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		7E9993162811BF78003C3723 /* SearchViewModelContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelContracts.swift; sourceTree = "<group>"; };
 		7EAB019928117D3B00678417 /* GithubFollowers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubFollowers.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +73,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E0F35D22812E7030003D114 /* Presentations */ = {
+			isa = PBXGroup;
+			children = (
+				7E0F35D32812E7640003D114 /* FollowerPresentation.swift */,
+			);
+			path = Presentations;
+			sourceTree = "<group>";
+		};
+		7E0F35D52812E9570003D114 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7E0F35D62812E9760003D114 /* FollowersCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		7EAB019028117D3B00678417 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +109,7 @@
 		7EAB019B28117D3B00678417 /* GithubFollowers */ = {
 			isa = PBXGroup;
 			children = (
+				7E0F35D22812E7030003D114 /* Presentations */,
 				7EAB01B328117D6E00678417 /* App */,
 				7EAB01CA28119D2600678417 /* Extensions */,
 				7EAB01C728119C4A00678417 /* Utilities */,
@@ -167,6 +190,7 @@
 			children = (
 				7EAB01CB28119D2E00678417 /* UIView+Ex.swift */,
 				7E6DD3D72812DEEC001FC701 /* UIViewController+Ex.swift */,
+				7E6DD3D92812E081001FC701 /* UITextField+Ex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -174,6 +198,7 @@
 		7EAB01CD2811A18C00678417 /* Followers */ = {
 			isa = PBXGroup;
 			children = (
+				7E0F35D52812E9570003D114 /* Cells */,
 				7EAB01CE2811A19600678417 /* FollowersViewController.swift */,
 				7EAB01D02811A1B400678417 /* FollowersBuilder.swift */,
 				7EAB01D22811A1EF00678417 /* FollowersViewModel.swift */,
@@ -267,9 +292,12 @@
 				7EAB01BC281190FB00678417 /* AppContainer.swift in Sources */,
 				7EAB01CF2811A19600678417 /* FollowersViewController.swift in Sources */,
 				7EAB019F28117D3B00678417 /* SceneDelegate.swift in Sources */,
+				7E0F35D42812E7640003D114 /* FollowerPresentation.swift in Sources */,
+				7E0F35D72812E9760003D114 /* FollowersCollectionViewCell.swift in Sources */,
 				7EAB01BA281190A400678417 /* SearchBuilder.swift in Sources */,
 				7EAB01C928119C5700678417 /* Constants.swift in Sources */,
 				7E9993172811BF78003C3723 /* SearchViewModelContracts.swift in Sources */,
+				7E6DD3DA2812E081001FC701 /* UITextField+Ex.swift in Sources */,
 				7EAB01CC28119D2E00678417 /* UIView+Ex.swift in Sources */,
 				7EAB01D52811A1F700678417 /* FollowersViewModelContracts.swift in Sources */,
 				7EAB01D32811A1EF00678417 /* FollowersViewModel.swift in Sources */,
