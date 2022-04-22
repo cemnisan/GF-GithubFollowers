@@ -12,6 +12,7 @@ protocol FollowersViewModelProtocol {
     var delegate: FollowersViewModelDelegate? { get set }
     
     func loadFollowers(pageNumber: Int) async
+    func isFollowersEmpty() -> Bool
 }
 
 protocol FollowersViewModelDelegate: AnyObject {

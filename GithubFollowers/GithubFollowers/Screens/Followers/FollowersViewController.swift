@@ -88,7 +88,7 @@ extension FollowersViewController {
     }
 }
 
-// MARK: - Helpers
+// MARK: - View Helpers
 extension FollowersViewController {
     
     private func createThreeColumnFlowLayout() -> UICollectionViewFlowLayout {
@@ -112,6 +112,14 @@ extension FollowersViewController {
         
         collectionViewDataSource.apply(snapshot, animatingDifferences: true)
     }
+    
+    private func updateView(with isFollowersEmpty: Bool) {
+        if isFollowersEmpty {
+            let message = "This doesn't have any followers. Go follow them."
+            self.showEmptyStateView(with: message, in: self.view)
+            return
+        }
+    }
 }
 
 // MARK: - FollowersViewModel Delegate
@@ -120,10 +128,11 @@ extension FollowersViewController: FollowersViewModelDelegate {
     func handleOutput(output: FollowersViewModelOutput) {
         
         switch output {
-        case .loadFollowers(let followers):
-            updateDataSource(on: followers)
         case .isLoading(let isLoading):
             isLoading ? showLoadingIndicator() : dissmisLoadingIndicator()
+        case .loadFollowers(let followers):
+            updateView(with: viewModel.isFollowersEmpty())
+            updateDataSource(on: followers)
         case .requestError(let error):
             presentGFAlertOnMainThread(title: "Something went wrong",
                                        message: error.localizedDescription,

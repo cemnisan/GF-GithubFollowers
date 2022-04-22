@@ -49,6 +49,16 @@ extension FollowersViewModel {
     }
 }
 
+// MARK: - Follower Helper
+extension FollowersViewModel {
+    
+    @MainActor func isFollowersEmpty() -> Bool {
+        if followers.count == 0 { return true }
+        
+        return false
+    }
+}
+
 // MARK: - Output Helper
 extension FollowersViewModel {
     
