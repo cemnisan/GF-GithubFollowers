@@ -29,8 +29,8 @@ extension NetworkManager {
             switch response.statusCode {
             case 200...299:
                 let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .iso8601
                 guard let decodedResponse = try? decoder.decode(model, from: data) else { return .failure(.decode) }
+                
                 return .success(decodedResponse)
             case 401:
                 return .failure(.unauthorized)

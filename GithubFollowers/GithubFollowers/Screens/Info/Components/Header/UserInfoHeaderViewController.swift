@@ -41,12 +41,11 @@ final class UserInfoHeaderViewController: UIViewController {
 extension UserInfoHeaderViewController {
     
     private func configureUIElements() {
-        userImageView.setUserImage(with: user.avatarUrl)
         usernameLabel.text  = user.login
         nameLabel.text      = user.name
         locationLabel.text  = user.location
         bioLabel.text       = user.bio
-
+        userImageView.setUserImage(with: user.avatarUrl)
     }
     
     private func configure() {
@@ -110,6 +109,8 @@ extension UserInfoHeaderViewController {
     }
     
     private func configureBioLabel() {
+        bioLabel.numberOfLines = 4
+        
         NSLayoutConstraint.activate([
             bioLabel.topAnchor.constraint(equalTo: userImageView.bottomAnchor, constant: 12),
             bioLabel.leadingAnchor.constraint(equalTo: userImageView.leadingAnchor),

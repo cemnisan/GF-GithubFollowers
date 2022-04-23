@@ -8,12 +8,13 @@
 import GFNetwork
 
 protocol FollowersViewModelProtocol {
-    var username: String { get }
+    var username: String { get set }
     var isFollowersEmpty: Bool { get }
     var hasMoreFollowers: Bool { get set }
     var delegate: FollowersViewModelDelegate? { get set }
     
     func loadFollowers(pageNumber: Int) async
+    func removeLoadedFollowers()
     func filterFollowersIfSearching(isSearching: Bool, searchText: String?)
     func selectedFollower(index: Int, isSearching: Bool)
 }

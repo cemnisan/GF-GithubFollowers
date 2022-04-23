@@ -81,6 +81,11 @@ extension FollowersViewModel {
             notify(.filterableFollowers(followers.map { FollowerPresentation(follower: $0) }))
         }
     }
+    
+    func removeLoadedFollowers() {
+        filteredFollowers.removeAll()
+        followers.removeAll()
+    }
 }
 
 // MARK: - Output Helper

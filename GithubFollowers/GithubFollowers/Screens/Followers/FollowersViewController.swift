@@ -22,6 +22,7 @@ final class FollowersViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         self.viewModel = viewModel
+        title          = viewModel.username
     }
     
     required init?(coder: NSCoder) {
@@ -33,6 +34,12 @@ final class FollowersViewController: UIViewController {
         
         configure()
         bindFollowers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 }
 
@@ -50,7 +57,6 @@ extension FollowersViewController {
     private func configureViewController() {
         view.backgroundColor                                   = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
-        title                                                  = viewModel.username
     }
     
     private func configureSearchController() {
@@ -67,7 +73,8 @@ extension FollowersViewController {
     }
     
     private func configureCollectionView() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createThreeColumnFlowLayout())
+        collectionView = UICollectionView(frame: view.bounds,
+                                          collectionViewLayout: createThreeColumnFlowLayout())
         view.addSubview(collectionView)
         
         collectionView.backgroundColor = .systemBackground
@@ -149,7 +156,7 @@ extension FollowersViewController: FollowersViewModelDelegate {
         
         switch router {
         case .userInfo(let viewModel):
-            let viewController = UserInfoBuilder.build(with: viewModel)
+            let viewController = UserInfoBuilder.build(with: viewModel, delegate: self)
             
             present(viewController, animated: true)
         }
@@ -181,6 +188,7 @@ extension FollowersViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
+        
         viewModel.selectedFollower(index: indexPath.item, isSearching: searchController.isSearching)
     }
     
@@ -196,6 +204,19 @@ extension FollowersViewController: UICollectionViewDelegate {
             pageNumber += 1
             bindFollowers()
         }
+    }
+}
+
+extension FollowersViewController: UserInfoViewControllerDelegate {
+    
+    func didRequestUserFollwers(for username: String) {
+        viewModel.username  = username
+        title               = viewModel.username
+        pageNumber          = 1
+        viewModel.removeLoadedFollowers()
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+        
+        bindFollowers()
     }
 }
 

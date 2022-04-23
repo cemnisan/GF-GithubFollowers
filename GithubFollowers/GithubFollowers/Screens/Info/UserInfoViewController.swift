@@ -8,6 +8,10 @@
 import UIKit
 import GFComponents
 
+protocol UserInfoViewControllerDelegate: AnyObject {
+    func didRequestUserFollwers(for username: String)
+}
+
 final class UserInfoViewController: UIViewController {
     
     private let scrollView        = UIScrollView()
@@ -15,15 +19,18 @@ final class UserInfoViewController: UIViewController {
     
     private let headerView        = UIView()
     private let userFollowersView = UIView()
-    private let userReposViwe     = UIView()
+    private let userReposView     = UIView()
     private let dateLabel         = GFBodyLabel(textAlignment: .center)
     
     private var viewModel: UserInfoViewModelProtocol!
     
-    init(viewModel: UserInfoViewModelProtocol) {
+    weak var delegate: UserInfoViewControllerDelegate?
+    
+    init(viewModel: UserInfoViewModelProtocol, delegate: UserInfoViewControllerDelegate) {
         super.init(nibName: nil, bundle: nil)
         
         self.viewModel = viewModel
+        self.delegate  = delegate
     }
     
     required init?(coder: NSCoder) {
@@ -56,44 +63,6 @@ extension UserInfoViewController {
         navigationItem.rightBarButtonItem   = doneButton
     }
     
-    private func layoutUI() {
-        [headerView,
-         userReposViwe,
-         userFollowersView,
-         dateLabel].forEach {
-            contentView.addSubview($0)
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            
-            NSLayoutConstraint.activate([
-                $0.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-                $0.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
-            ])
-        }
-        
-        userReposViwe.backgroundColor = .systemBlue
-        userFollowersView.backgroundColor = .systemRed
-        
-        NSLayoutConstraint.activate([
-            headerView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 210),
-            
-            userReposViwe.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 20),
-            userReposViwe.heightAnchor.constraint(equalToConstant: 140),
-            
-            userFollowersView.topAnchor.constraint(equalTo: userReposViwe.bottomAnchor, constant: 20),
-            userFollowersView.heightAnchor.constraint(equalToConstant: 140),
-            
-            dateLabel.topAnchor.constraint(equalTo: userFollowersView.bottomAnchor, constant: 20),
-            dateLabel.heightAnchor.constraint(equalToConstant: 50)
-        ])
-    }
-    
-    private func configureUIElements(with user: UserInfoPresentation) {
-        let headerViewController = UserInfoHeaderViewController(user: user)
-        
-        add(childVC: headerViewController, to: self.headerView)
-    }
-    
     private func configureScrollView() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -105,6 +74,47 @@ extension UserInfoViewController {
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             contentView.heightAnchor.constraint(equalToConstant: 600)
         ])
+    }
+    
+    private func layoutUI() {
+        [headerView,
+         userReposView,
+         userFollowersView,
+         dateLabel].forEach {
+            contentView.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                $0.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+                $0.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
+            ])
+        }
+        
+        dateLabel.text = "Since 2013"
+        
+        NSLayoutConstraint.activate([
+            headerView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 210),
+            
+            userReposView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 20),
+            userReposView.heightAnchor.constraint(equalToConstant: 140),
+            
+            userFollowersView.topAnchor.constraint(equalTo: userReposView.bottomAnchor, constant: 20),
+            userFollowersView.heightAnchor.constraint(equalToConstant: 140),
+            
+            dateLabel.topAnchor.constraint(equalTo: userFollowersView.bottomAnchor, constant: 20),
+            dateLabel.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    private func configureUIElements(with user: UserInfoPresentation) {
+        let headerViewController       = UserInfoHeaderViewController(user: user)
+        let repoItemViewController     = RepoItemInfoViewController(user: user, delegate: self)
+        let followerItemViewController = FollowerItemInfoViewController(user: user, delegate: self)
+        
+        add(childVC: headerViewController, to: self.headerView)
+        add(childVC: repoItemViewController, to: self.userReposView)
+        add(childVC: followerItemViewController, to: self.userFollowersView)
     }
     
     private func configureViewModel() {
@@ -133,14 +143,35 @@ extension UserInfoViewController {
     }
 }
 
+// MARK: - UserInfoViewModel Output
 extension UserInfoViewController: UserInfoViewModelDelegate {
     
     func handleOutput(output: UserInfoViewModelOutput) {
-        
         switch output {
         case .loadUserInfo(let user):
             configureUIElements(with: user)
         }
+    }
+}
+
+// MARK: - RepoItemInfo Delegate
+extension UserInfoViewController: RepoItemInfoDelegate {
+    
+    func githubProfileButtonTapped(for user: UserInfoPresentation) {
+        guard let url = URL(string: user.htmlUrl) else {
+            presentGFAlertOnMainThread(title: "Something went wrong", message: "The url attachted to this user is invalid.", buttonTitle: "OK")
+            return
+        }
+        presentSafariViewController(with: url)
+    }
+}
+
+// MARK: - FollowerItemInfo Delegate
+extension UserInfoViewController: FollowerItemInfoDelegate {
+    
+    func getFollowerButtonTapped(for user: UserInfoPresentation) {
+        delegate?.didRequestUserFollwers(for: user.login)
+        dismissViewController()
     }
 }
 

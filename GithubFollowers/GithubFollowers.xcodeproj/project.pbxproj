@@ -18,6 +18,9 @@
 		7E45138928134DEE0053C896 /* UserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45138828134DEE0053C896 /* UserInfoViewModel.swift */; };
 		7E45138C2813580C0053C896 /* UserInfoPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45138B2813580C0053C896 /* UserInfoPresentation.swift */; };
 		7E45138E281359900053C896 /* UserInfoHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45138D281359900053C896 /* UserInfoHeaderViewController.swift */; };
+		7E4880EC2814219F00FC3EFD /* ItemInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4880EB2814219F00FC3EFD /* ItemInfoViewController.swift */; };
+		7E4880EE2814243400FC3EFD /* RepoItemInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4880ED2814243400FC3EFD /* RepoItemInfoViewController.swift */; };
+		7E4880F0281424C900FC3EFD /* FollowerItemInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4880EF281424C900FC3EFD /* FollowerItemInfoViewController.swift */; };
 		7E6DD3D82812DEEC001FC701 /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6DD3D72812DEEC001FC701 /* UIViewController+Ex.swift */; };
 		7E6DD3DA2812E081001FC701 /* UITextField+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6DD3D92812E081001FC701 /* UITextField+Ex.swift */; };
 		7E9993152811BF72003C3723 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9993142811BF72003C3723 /* SearchViewModel.swift */; };
@@ -54,6 +57,9 @@
 		7E45138828134DEE0053C896 /* UserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewModel.swift; sourceTree = "<group>"; };
 		7E45138B2813580C0053C896 /* UserInfoPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoPresentation.swift; sourceTree = "<group>"; };
 		7E45138D281359900053C896 /* UserInfoHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoHeaderViewController.swift; sourceTree = "<group>"; };
+		7E4880EB2814219F00FC3EFD /* ItemInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfoViewController.swift; sourceTree = "<group>"; };
+		7E4880ED2814243400FC3EFD /* RepoItemInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoItemInfoViewController.swift; sourceTree = "<group>"; };
+		7E4880EF281424C900FC3EFD /* FollowerItemInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerItemInfoViewController.swift; sourceTree = "<group>"; };
 		7E6DD3D72812DEEC001FC701 /* UIViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
 		7E6DD3D92812E081001FC701 /* UITextField+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ex.swift"; sourceTree = "<group>"; };
 		7E9993142811BF72003C3723 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -131,9 +137,44 @@
 		7E45138A281357EF0053C896 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				7E45138D281359900053C896 /* UserInfoHeaderViewController.swift */,
+				7E4880E82814216800FC3EFD /* ItemInfo */,
+				7E4880E72814216100FC3EFD /* Header */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		7E4880E72814216100FC3EFD /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				7E45138D281359900053C896 /* UserInfoHeaderViewController.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		7E4880E82814216800FC3EFD /* ItemInfo */ = {
+			isa = PBXGroup;
+			children = (
+				7E4880EA2814218100FC3EFD /* Child */,
+				7E4880E92814217C00FC3EFD /* Parent */,
+			);
+			path = ItemInfo;
+			sourceTree = "<group>";
+		};
+		7E4880E92814217C00FC3EFD /* Parent */ = {
+			isa = PBXGroup;
+			children = (
+				7E4880EB2814219F00FC3EFD /* ItemInfoViewController.swift */,
+			);
+			path = Parent;
+			sourceTree = "<group>";
+		};
+		7E4880EA2814218100FC3EFD /* Child */ = {
+			isa = PBXGroup;
+			children = (
+				7E4880ED2814243400FC3EFD /* RepoItemInfoViewController.swift */,
+				7E4880EF281424C900FC3EFD /* FollowerItemInfoViewController.swift */,
+			);
+			path = Child;
 			sourceTree = "<group>";
 		};
 		7EAB019028117D3B00678417 = {
@@ -338,13 +379,16 @@
 				7E45138328134D8A0053C896 /* UserInfoViewController.swift in Sources */,
 				7EAB019D28117D3B00678417 /* AppDelegate.swift in Sources */,
 				7E6DD3D82812DEEC001FC701 /* UIViewController+Ex.swift in Sources */,
+				7E4880F0281424C900FC3EFD /* FollowerItemInfoViewController.swift in Sources */,
 				7EAB01C12811930F00678417 /* FavoritesViewController.swift in Sources */,
 				7EAB01C32811932F00678417 /* FavoritesBuilder.swift in Sources */,
 				7E45138028133B270053C896 /* UISearchController+Ex.swift in Sources */,
 				7E0F35D92812F9730003D114 /* ImageLoaders.swift in Sources */,
 				7EAB01BE2811910000678417 /* AppRouter.swift in Sources */,
 				7EAB01D12811A1B400678417 /* FollowersBuilder.swift in Sources */,
+				7E4880EE2814243400FC3EFD /* RepoItemInfoViewController.swift in Sources */,
 				7E9993152811BF72003C3723 /* SearchViewModel.swift in Sources */,
+				7E4880EC2814219F00FC3EFD /* ItemInfoViewController.swift in Sources */,
 				7E45138C2813580C0053C896 /* UserInfoPresentation.swift in Sources */,
 				7EAB01BC281190FB00678417 /* AppContainer.swift in Sources */,
 				7EAB01CF2811A19600678417 /* FollowersViewController.swift in Sources */,
