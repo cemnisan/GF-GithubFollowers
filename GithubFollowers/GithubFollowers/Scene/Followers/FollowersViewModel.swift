@@ -10,6 +10,7 @@ import GFNetwork
 final class FollowersViewModel: FollowersViewModelProtocol {
     
     var username: String
+    var pageNumber = 1
     var isFollowersEmpty: Bool { followers.count == 0 ? true : false }
     var hasMoreFollowers = false
     
@@ -29,7 +30,7 @@ final class FollowersViewModel: FollowersViewModelProtocol {
 // MARK: - Loader
 extension FollowersViewModel {
     
-    func loadFollowers(pageNumber: Int) async {
+    func loadFollowers() async {
         notify(.isLoading(true))
         let result = await service.getUserFollowers(with: username, pageNumber: pageNumber)
         notify(.isLoading(false))
@@ -44,7 +45,7 @@ extension FollowersViewModel {
     private func followersResults(results: Result<[Follower]>) {
         switch results {
         case .success(let followers):
-            if followers.count < 100 { hasMoreFollowers = true }
+            if followers.count == 0 { hasMoreFollowers = true }
             self.followers.append(contentsOf: followers)
             let followersPresentation = self.followers.map { FollowerPresentation(follower: $0) }
             notify(.loadFollowers(followersPresentation))
@@ -82,9 +83,11 @@ extension FollowersViewModel {
         }
     }
     
-    func removeLoadedFollowers() {
-        filteredFollowers.removeAll()
+    func followersDidLoad() {
+        pageNumber       = 1
+        hasMoreFollowers = false
         followers.removeAll()
+        filteredFollowers.removeAll()
     }
 }
 

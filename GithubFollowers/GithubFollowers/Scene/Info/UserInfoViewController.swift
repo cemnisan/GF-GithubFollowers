@@ -24,7 +24,7 @@ final class UserInfoViewController: UIViewController {
     
     private var viewModel: UserInfoViewModelProtocol!
     
-    weak var delegate: UserInfoViewControllerDelegate?
+    private weak var delegate: UserInfoViewControllerDelegate?
     
     init(viewModel: UserInfoViewModelProtocol, delegate: UserInfoViewControllerDelegate) {
         super.init(nibName: nil, bundle: nil)
@@ -112,8 +112,8 @@ extension UserInfoViewController {
         let repoItemViewController     = RepoItemInfoViewController(user: user, delegate: self)
         let followerItemViewController = FollowerItemInfoViewController(user: user, delegate: self)
         
-        add(childVC: headerViewController, to: self.headerView)
-        add(childVC: repoItemViewController, to: self.userReposView)
+        add(childVC: headerViewController,       to: self.headerView)
+        add(childVC: repoItemViewController,     to: self.userReposView)
         add(childVC: followerItemViewController, to: self.userFollowersView)
     }
     
@@ -159,7 +159,9 @@ extension UserInfoViewController: RepoItemInfoDelegate {
     
     func githubProfileButtonTapped(for user: UserInfoPresentation) {
         guard let url = URL(string: user.htmlUrl) else {
-            presentGFAlertOnMainThread(title: "Something went wrong", message: "The url attachted to this user is invalid.", buttonTitle: "OK")
+            presentGFAlertOnMainThread(title: "Something went wrong",
+                                       message: "The url attachted to this user is invalid.",
+                                       buttonTitle: "OK")
             return
         }
         presentSafariViewController(with: url)

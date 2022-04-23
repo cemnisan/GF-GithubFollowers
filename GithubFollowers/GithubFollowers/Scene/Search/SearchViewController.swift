@@ -36,21 +36,18 @@ final class SearchViewController: UIViewController {
 extension SearchViewController {
     
     private func configure() {
-        view.addSubviews(logoImageView, searchTextField, searchButton)
-        
+        view.addSubviews(logoImageView,
+                         searchTextField,
+                         searchButton)
         configureViewController()
-        configureViewModel()
         configureLogo()
         configureSearchTextField()
         configureSearchButton()
+        configureViewModel()
     }
     
     private func configureViewController() {
         view.backgroundColor = .systemBackground
-    }
-    
-    private func configureViewModel() {
-        viewModel.delegate = self
     }
     
     private func configureLogo() {
@@ -83,6 +80,10 @@ extension SearchViewController {
             searchButton.heightAnchor.constraint(equalToConstant: padding)
         ])
     }
+    
+    private func configureViewModel() {
+        viewModel.delegate = self
+    }
 }
 
 // MARK: - Button Tapped
@@ -96,13 +97,12 @@ extension SearchViewController {
                                        buttonTitle: "OK")
             return
         }
-        
         searchTextField.resignFirstResponder()
-        viewModel.getFollowersButtonDidTapped(username: searchTextField.text!)
+        viewModel.searchButtonDidTapped(username: searchTextField.text!)
     }
 }
 
-// MARK: - SearchViewModel Delegate
+// MARK: - SearchViewModel Router
 extension SearchViewController: SearchViewModelDelegate {
     
     func navigate(to router: SearchViewModelRouter) {

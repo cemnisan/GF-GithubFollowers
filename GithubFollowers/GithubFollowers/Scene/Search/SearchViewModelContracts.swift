@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SearchViewModelProtocol {    
-    func getFollowersButtonDidTapped(username: String)
+    func searchButtonDidTapped(username: String)
 }
 
 protocol SearchViewModelDelegate: AnyObject {

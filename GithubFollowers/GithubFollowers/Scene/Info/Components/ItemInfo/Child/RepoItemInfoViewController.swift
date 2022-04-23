@@ -13,7 +13,7 @@ protocol RepoItemInfoDelegate: AnyObject {
 
 final class RepoItemInfoViewController: ItemInfoViewController {
     
-    weak var delegate: RepoItemInfoDelegate?
+    private weak var delegate: RepoItemInfoDelegate?
     
     init(user: UserInfoPresentation, delegate: RepoItemInfoDelegate) {
         super.init(user: user)

@@ -8,7 +8,7 @@
 import UIKit
 import GFNetwork
 
-actor ImageLoader {
+final actor ImageLoader {
     
     private enum downloadstates {
         case inProgress(Task<UIImage, Error>)
@@ -17,7 +17,6 @@ actor ImageLoader {
     }
     
     static let shared = ImageLoader()
-    
     private var cache: [String: downloadstates] = [:]
     
     private init() { }

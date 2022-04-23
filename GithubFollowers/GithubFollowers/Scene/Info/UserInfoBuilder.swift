@@ -10,9 +10,9 @@ import UIKit
 final class UserInfoBuilder {
     
     static func build(with viewModel: UserInfoViewModelProtocol,
-                      delegate: UserInfoViewControllerDelegate) -> UIViewController {
+                      delegate: UserInfoViewControllerDelegate) -> UINavigationController {
         let viewController = UserInfoViewController(viewModel: viewModel, delegate: delegate)
         
-        return viewController
+        return UINavigationController(rootViewController: viewController)
     }
 }

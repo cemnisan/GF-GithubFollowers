@@ -17,7 +17,7 @@ final class SearchViewModel {
 // MARK: - SearchViewModel Protocol
 extension SearchViewModel: SearchViewModelProtocol {
     
-    func getFollowersButtonDidTapped(username: String) {
+    func searchButtonDidTapped(username: String) {
         let viewModel = FollowersViewModel(service: app.service, username: username)
         
         delegate?.navigate(to: .followers(viewModel))

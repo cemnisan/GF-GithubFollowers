@@ -16,8 +16,6 @@ final class FollowersViewController: UIViewController {
     private var collectionViewDataSource: UICollectionViewDiffableDataSource<Section, FollowerPresentation>!
     private var searchController: UISearchController!
     
-    private var pageNumber = 1
-    
     init(viewModel: FollowersViewModelProtocol) {
         super.init(nibName: nil, bundle: nil)
         
@@ -129,7 +127,7 @@ extension FollowersViewController {
     }
 }
 
-// MARK: - FollowersViewModel Delegate
+// MARK: - FollowersViewModel Output
 extension FollowersViewController: FollowersViewModelDelegate {
     
     func handleOutput(output: FollowersViewModelOutput) {
@@ -151,14 +149,18 @@ extension FollowersViewController: FollowersViewModelDelegate {
                                        buttonTitle: "OK")
         }
     }
+}
+
+// MARK: - FollowersViewModel Router
+extension FollowersViewController {
     
     func navigate(to router: FollowersViewModelRouter) {
         
         switch router {
         case .userInfo(let viewModel):
             let viewController = UserInfoBuilder.build(with: viewModel, delegate: self)
-            
-            present(viewController, animated: true)
+            searchController.isActive = false
+            show(viewController, sender: nil)
         }
     }
 }
@@ -201,28 +203,29 @@ extension FollowersViewController: UICollectionViewDelegate {
         if offsetY > contentHeight - height {
             guard !viewModel.hasMoreFollowers else { return }
             
-            pageNumber += 1
+            viewModel.pageNumber += 1
             bindFollowers()
         }
     }
 }
 
+// MARK: - UserInfoViewController Delegate
 extension FollowersViewController: UserInfoViewControllerDelegate {
     
     func didRequestUserFollwers(for username: String) {
-        viewModel.username  = username
-        title               = viewModel.username
-        pageNumber          = 1
-        viewModel.removeLoadedFollowers()
+        viewModel.username            = username
+        title                         = username
+        viewModel.followersDidLoad()
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
         
         bindFollowers()
     }
 }
 
+// MARK: - Bind Data
 extension FollowersViewController {
     
     private func bindFollowers() {
-        Task(priority: .background) { await viewModel.loadFollowers(pageNumber:pageNumber) }
+        Task(priority: .background) { await viewModel.loadFollowers() }
     }
 }

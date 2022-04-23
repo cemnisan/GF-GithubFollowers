@@ -13,7 +13,7 @@ protocol FollowerItemInfoDelegate: AnyObject {
 
 final class FollowerItemInfoViewController: ItemInfoViewController {
     
-    weak var delegate: FollowerItemInfoDelegate?
+    private weak var delegate: FollowerItemInfoDelegate?
     
     init(user: UserInfoPresentation, delegate: FollowerItemInfoDelegate) {
         super.init(user: user)

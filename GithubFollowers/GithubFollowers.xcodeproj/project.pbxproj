@@ -202,7 +202,7 @@
 				7EAB01CA28119D2600678417 /* Extensions */,
 				7EAB01C728119C4A00678417 /* Utilities */,
 				7EAB01B428117D7300678417 /* Supporting Files */,
-				7EAB01B528117D7B00678417 /* Screens */,
+				7EAB01B528117D7B00678417 /* Scene */,
 				7EAB01AA28117D3B00678417 /* Info.plist */,
 			);
 			path = GithubFollowers;
@@ -235,7 +235,7 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		7EAB01B528117D7B00678417 /* Screens */ = {
+		7EAB01B528117D7B00678417 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
 				7E45138128134D750053C896 /* Info */,
@@ -243,7 +243,7 @@
 				7EAB01BF2811930600678417 /* Favorites */,
 				7EAB01B82811909A00678417 /* Search */,
 			);
-			path = Screens;
+			path = Scene;
 			sourceTree = "<group>";
 		};
 		7EAB01B82811909A00678417 /* Search */ = {
