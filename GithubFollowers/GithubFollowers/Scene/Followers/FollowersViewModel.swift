@@ -122,13 +122,13 @@ extension FollowersViewModel {
     
     private func addUserToUserDefaults(with user: UserInfoPresentation) {
         let userDefaults                      = UserDefaultsManager()
-        var favorites: [UserInfoPresentation] = userDefaults.getArrayFormLocal(key: .favorites)
+        var favorites: [UserInfoPresentation] = userDefaults.read(key: .favorites)
         
         let isAlreadyInFavorites              = favorites.contains { $0.login == user.login }
         guard !isAlreadyInFavorites else { notify(.isAlreadyInFavorites); return }
         
         favorites.append(user)
-        userDefaults.setArrayToLocal(key: .favorites, array: favorites)
+        userDefaults.create(key: .favorites, array: favorites)
         notify(.addedFavorites)
     }
 }

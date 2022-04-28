@@ -20,7 +20,7 @@ extension FavoritesViewModel: FavoritesViewModelProtocol
 {
     func loadFavorites() {
         let userDefaults                      = UserDefaultsManager()
-        let favorites: [UserInfoPresentation] = userDefaults.getArrayFormLocal(key: .favorites)
+        let favorites: [UserInfoPresentation] = userDefaults.read(key: .favorites)
         self.favorites                        = favorites
         notify(.loadFavorites)
     }
@@ -52,7 +52,7 @@ extension FavoritesViewModel {
     func removeFavorite(at index: Int) {
         let userDefaults = UserDefaultsManager()
         favorites.remove(at: index)
-        userDefaults.setArrayToLocal(key: .favorites, array: favorites)
+        userDefaults.create(key: .favorites, array: favorites)
     }
 }
 

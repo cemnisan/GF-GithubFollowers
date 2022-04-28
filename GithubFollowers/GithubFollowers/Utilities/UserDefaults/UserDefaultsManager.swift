@@ -11,20 +11,27 @@ enum UserDefaultsKeys: String { case favorites }
 
 final class UserDefaultsManager {
     
-    func setArrayToLocal<T: Codable>(key: UserDefaultsKeys, array: [T]) {
-        guard let encode = try? JSONEncoder().encode(array) else { return }
-        let userDefaults = UserDefaults.standard
-        userDefaults.set(encode, forKey: key.rawValue)
+    func create<T: Codable>(key: UserDefaultsKeys, array: [T]) {
+        do {
+            let userDefaults = UserDefaults.standard
+            let encoder      = JSONEncoder()
+            let encode       = try encoder.encode(array)
+            userDefaults.set(encode, forKey: key.rawValue)
+        } catch {
+            print(error)
+        }
     }
     
-    func getArrayFormLocal<T: Codable>(key: UserDefaultsKeys) -> [T] {
-        let userDefaults = UserDefaults.standard
-        guard let encode = userDefaults.data(forKey: key.rawValue),
-              let decode = try? JSONDecoder().decode([T].self, from: encode) else { return [] }
-        return decode
-    }
-    
-    func removeFavorites(key: UserDefaultsKeys) {
-        UserDefaults.standard.removeObject(forKey: key.rawValue)
+    func read<T: Codable>(key: UserDefaultsKeys) -> [T] {
+        do {
+            let userDefaults = UserDefaults.standard
+            guard let data = userDefaults.data(forKey: key.rawValue) else { return [] }
+            let decoder      = JSONDecoder()
+            let decode       = try decoder.decode([T].self, from: data)
+            
+            return decode
+        } catch {
+            return []
+        }
     }
 }
