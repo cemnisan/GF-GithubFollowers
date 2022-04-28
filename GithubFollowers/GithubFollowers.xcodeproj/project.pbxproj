@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		7E0F35D42812E7640003D114 /* FollowerPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F35D32812E7640003D114 /* FollowerPresentation.swift */; };
 		7E0F35D72812E9760003D114 /* FollowersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F35D62812E9760003D114 /* FollowersCollectionViewCell.swift */; };
-		7E0F35D92812F9730003D114 /* ImageLoaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F35D82812F9730003D114 /* ImageLoaders.swift */; };
+		7E0F35D92812F9730003D114 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F35D82812F9730003D114 /* ImageLoader.swift */; };
 		7E0F35DB2812FB8B0003D114 /* UIImageView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F35DA2812FB8B0003D114 /* UIImageView+Ex.swift */; };
 		7E45138028133B270053C896 /* UISearchController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45137F28133B270053C896 /* UISearchController+Ex.swift */; };
 		7E45138328134D8A0053C896 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45138228134D8A0053C896 /* UserInfoViewController.swift */; };
@@ -54,7 +54,7 @@
 /* Begin PBXFileReference section */
 		7E0F35D32812E7640003D114 /* FollowerPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerPresentation.swift; sourceTree = "<group>"; };
 		7E0F35D62812E9760003D114 /* FollowersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersCollectionViewCell.swift; sourceTree = "<group>"; };
-		7E0F35D82812F9730003D114 /* ImageLoaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaders.swift; sourceTree = "<group>"; };
+		7E0F35D82812F9730003D114 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		7E0F35DA2812FB8B0003D114 /* UIImageView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ex.swift"; sourceTree = "<group>"; };
 		7E45137F28133B270053C896 /* UISearchController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchController+Ex.swift"; sourceTree = "<group>"; };
 		7E45138228134D8A0053C896 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
@@ -189,6 +189,22 @@
 			path = Child;
 			sourceTree = "<group>";
 		};
+		7E703DB1281B3CF7004F364E /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				7EAB01C828119C5700678417 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		7E703DB2281B3D03004F364E /* ImageLoader */ = {
+			isa = PBXGroup;
+			children = (
+				7E0F35D82812F9730003D114 /* ImageLoader.swift */,
+			);
+			path = ImageLoader;
+			sourceTree = "<group>";
+		};
 		7E9CE5A02819601300884B1D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,9 +317,9 @@
 		7EAB01C728119C4A00678417 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				7E703DB2281B3D03004F364E /* ImageLoader */,
+				7E703DB1281B3CF7004F364E /* Constants */,
 				7E9CE5A528196C3E00884B1D /* UserDefaults */,
-				7EAB01C828119C5700678417 /* Constants.swift */,
-				7E0F35D82812F9730003D114 /* ImageLoaders.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -419,7 +435,7 @@
 				7EAB01C12811930F00678417 /* FavoritesViewController.swift in Sources */,
 				7EAB01C32811932F00678417 /* FavoritesBuilder.swift in Sources */,
 				7E45138028133B270053C896 /* UISearchController+Ex.swift in Sources */,
-				7E0F35D92812F9730003D114 /* ImageLoaders.swift in Sources */,
+				7E0F35D92812F9730003D114 /* ImageLoader.swift in Sources */,
 				7EAB01BE2811910000678417 /* AppRouter.swift in Sources */,
 				7EAB01D12811A1B400678417 /* FollowersBuilder.swift in Sources */,
 				7E4880EE2814243400FC3EFD /* RepoItemInfoViewController.swift in Sources */,

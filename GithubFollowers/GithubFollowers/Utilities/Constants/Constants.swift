@@ -17,6 +17,7 @@ struct K {
     struct Image {
         static let logoImage                    = UIImage(named: "gh-logo")!
         static let locationImageView            = UIImage(systemName: "mappin.and.ellipse")!
+        static let emptyImageView               = UIImage(named: "empty-state-logo") 
     }
             
     struct Title {

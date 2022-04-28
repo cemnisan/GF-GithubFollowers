@@ -42,9 +42,9 @@ extension UserInfoHeaderViewController {
     
     private func configureUIElements() {
         usernameLabel.text  = user.login
-        nameLabel.text      = user.name
-        locationLabel.text  = user.location
-        bioLabel.text       = user.bio
+        nameLabel.text      = user.name ?? "No available name"
+        locationLabel.text  = user.location ?? "No avaliable location"
+        bioLabel.text       = user.bio ?? "No available bio"
         userImageView.setUserImage(with: user.avatarUrl)
     }
     

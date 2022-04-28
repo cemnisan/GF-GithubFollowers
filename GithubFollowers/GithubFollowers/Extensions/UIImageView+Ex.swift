@@ -10,7 +10,7 @@ import UIKit
 extension UIImageView {
     
     func setUserImage(with imageURL: String) {
-        self.image = #imageLiteral(resourceName: "empty-state-logo") // ??
+        self.image = K.Image.emptyImageView
         
         Task {
             guard let image = try? await ImageLoader.shared.image(imageURL) else { return }

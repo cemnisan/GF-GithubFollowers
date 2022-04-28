@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import GFNetwork
 
 final class SearchViewModel {
     
@@ -18,8 +19,9 @@ final class SearchViewModel {
 extension SearchViewModel: SearchViewModelProtocol {
     
     func searchButtonDidTapped(username: String) {
-        let viewModel = FollowersViewModel(followersService: app.followersService,
-                                           userService: app.userService,
+        let userService = UserInfoService()
+        let viewModel   = FollowersViewModel(followersService: app.followersService,
+                                           userService: userService,
                                            username: username)
         delegate?.navigate(to: .followers(viewModel))
     }

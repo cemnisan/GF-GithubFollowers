@@ -48,8 +48,9 @@ extension FavoritesViewModel {
     
     func selectedFavorite(at index: Int) {
         let favorite           = favorites[index]
+        let userService        = UserInfoService()
         let followersViewModel = FollowersViewModel(followersService: app.followersService,
-                                                    userService: app.userService,
+                                                    userService: userService,
                                                     username: favorite.login)
         notify(.toFollowers(followersViewModel))
     }

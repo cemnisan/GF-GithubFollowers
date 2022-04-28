@@ -17,9 +17,13 @@ final actor ImageLoader {
     }
     
     static let shared = ImageLoader()
-    private var cache: [String: downloadstates] = [:]
     
-    private init() { }
+    private var cache: [String: downloadstates] = [:]
+    private var imageService: ImageServiceable
+    
+    private init(imageService: ImageServiceable = ImageService()) {
+        self.imageService = imageService
+    }
 }
 
 extension ImageLoader {
@@ -41,7 +45,7 @@ extension ImageLoader {
         }
         
         let download: Task<UIImage, Error> = Task.detached {
-            return try await NetworkManager.shared.execute(with: imageURL)
+            return try await self.imageService.downloadImage(with: imageURL)
         }
         cache[imageURL] = .inProgress(download)
         
