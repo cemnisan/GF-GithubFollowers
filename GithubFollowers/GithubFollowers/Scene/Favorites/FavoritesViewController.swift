@@ -67,12 +67,26 @@ extension FavoritesViewController {
     }
 }
 
+// MARK: - Output
 extension FavoritesViewController: FavoritesViewModelDelegate {
     
     func handleOutput(output: FavoritesViewModelOutput) {
         switch output {
-        case .loadUser:
+        case .loadFavorites:
             DispatchQueue.main.async { self.tableView.reloadData() }
+        }
+    }
+}
+
+// MARK: - Navigate
+extension FavoritesViewController {
+    
+    func navigate(to router: FavoritesViewModelRouter) {
+        switch router {
+        case .toFollowers(let followersViewModel):
+            let viewController = FollowersViewController(viewModel: followersViewModel)
+            
+            navigationController?.pushViewController(viewController, animated: true)
         }
     }
 }
@@ -95,11 +109,16 @@ extension FavoritesViewController: UITableViewDataSource {
 
 extension FavoritesViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.selectedFavorite(at: indexPath.row)
+    }
+    
     func tableView(_ tableView: UITableView,
                    commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
-        viewModel.removeFavorites(at: indexPath.row)
+        
+        viewModel.removeFavorite(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .left)
     }
 }

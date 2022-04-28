@@ -26,7 +26,7 @@ final class UserInfoViewController: UIViewController {
     
     private weak var delegate: UserInfoViewControllerDelegate?
     
-    init(viewModel: UserInfoViewModelProtocol, delegate: UserInfoViewControllerDelegate) {
+    init(viewModel: UserInfoViewModelProtocol, delegate: UserInfoViewControllerDelegate?) {
         super.init(nibName: nil, bundle: nil)
         
         self.viewModel = viewModel

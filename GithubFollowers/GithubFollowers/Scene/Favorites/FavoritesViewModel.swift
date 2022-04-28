@@ -22,10 +22,10 @@ extension FavoritesViewModel: FavoritesViewModelProtocol
         let userDefaults                      = UserDefaultsManager()
         let favorites: [UserInfoPresentation] = userDefaults.getArrayFormLocal(key: .favorites)
         self.favorites                        = favorites
-        notify(.loadUser)
+        notify(.loadFavorites)
     }
     
-    func removeFavorites(at index: Int) {
+    func removeFavorite(at index: Int) {
         let userDefaults = UserDefaultsManager()
         favorites.remove(at: index)
         userDefaults.setArrayToLocal(key: .favorites, array: favorites)
@@ -45,6 +45,14 @@ extension FavoritesViewModel {
         
         return viewModel
     }
+    
+    func selectedFavorite(at index: Int) {
+        let favorite           = favorites[index]
+        let followersViewModel = FollowersViewModel(followersService: app.followersService,
+                                                    userService: app.userService,
+                                                    username: favorite.login)
+        notify(.toFollowers(followersViewModel))
+    }
 }
 
 // MARK: Output Helper
@@ -52,5 +60,9 @@ extension FavoritesViewModel {
     
     private func notify(_ output: FavoritesViewModelOutput) {
         delegate?.handleOutput(output: output)
+    }
+    
+    private func notify(_ router: FavoritesViewModelRouter) {
+        delegate?.navigate(to: router)
     }
 }

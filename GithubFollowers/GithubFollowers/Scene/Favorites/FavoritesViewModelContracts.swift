@@ -11,15 +11,22 @@ protocol FavoritesViewModelProtocol {
     var delegate: FavoritesViewModelDelegate? { get set }
     
     func loadFavorites()
-    func removeFavorites(at index: Int)
+    func removeFavorite(at index: Int)
+    
     func favoriteCellViewModel(at index: Int) -> FavoritesCellViewModel
     func numberOfRowsInSection() -> Int
+    func selectedFavorite(at index: Int)
 }
 
 protocol FavoritesViewModelDelegate: AnyObject {
     func handleOutput(output: FavoritesViewModelOutput)
+    func navigate(to router: FavoritesViewModelRouter)
+}
+
+enum FavoritesViewModelRouter {
+    case toFollowers(FollowersViewModelProtocol)
 }
 
 enum FavoritesViewModelOutput {
-    case loadUser
+    case loadFavorites
 }
