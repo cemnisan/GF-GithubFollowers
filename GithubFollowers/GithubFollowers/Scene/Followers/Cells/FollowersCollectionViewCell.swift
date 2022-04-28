@@ -12,7 +12,7 @@ final class FollowersCollectionViewCell: UICollectionViewCell {
     
     static let reuseID = "followersCell"
     
-    private let userImageView = GFImageView(frame: .zero)
+    private let userImageView     = GFImageView(frame: .zero)
     private let usernameLabel     = GFTitleLabel(textAlignment: .center, fontSize: 16)
     
     let padding: CGFloat = 8
@@ -25,6 +25,11 @@ final class FollowersCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        userImageView.image = nil
+        usernameLabel.text  = nil
     }
 }
 

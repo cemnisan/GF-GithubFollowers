@@ -15,6 +15,7 @@ protocol FollowersViewModelProtocol {
     var delegate: FollowersViewModelDelegate? { get set }
     
     func loadFollowers() async
+    func userDidTappedAddFavoritesButton() async
     func followersDidLoad()
     func filterFollowersIfSearching(isSearching: Bool, searchText: String?)
     func selectedFollower(index: Int, isSearching: Bool)
@@ -31,6 +32,7 @@ enum FollowersViewModelRouter {
 
 enum FollowersViewModelOutput {
     case loadFollowers([FollowerPresentation])
+    case addFavorites
     case isLoading(Bool)
     case requestError(HTTPRequestError)
     case filterableFollowers([FollowerPresentation])

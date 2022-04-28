@@ -11,6 +11,7 @@ import GFNetwork
 let app = AppContainer()
 
 final class AppContainer {
-    let router  = AppRouter()
-    let service: FollowerServiceable = FollowerService()
+    let router                                = AppRouter()
+    let followersService: FollowerServiceable = FollowerService()
+    let userService: UserInfoServiceable      = UserInfoService()
 }

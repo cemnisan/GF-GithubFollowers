@@ -55,8 +55,13 @@ extension FollowersViewController {
     private func configureViewController() {
         view.backgroundColor                                   = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .add,
+                                         target: self,
+                                         action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = doneButton
     }
-    
+
     private func configureSearchController() {
         searchController                                       = UISearchController()
         searchController.searchResultsUpdater                  = self
@@ -92,6 +97,16 @@ extension FollowersViewController {
         })
     }
 }
+
+// MARK: - Button Tapped
+extension FollowersViewController {
+    
+    @objc
+    private func addButtonTapped() {
+        Task { await viewModel.userDidTappedAddFavoritesButton() }
+    }
+}
+
 
 // MARK: - View Helpers
 extension FollowersViewController {
@@ -139,6 +154,11 @@ extension FollowersViewController: FollowersViewModelDelegate {
         case .loadFollowers(let followers):
             updateView(if: viewModel.isFollowersEmpty)
             updateDataSource(on: followers)
+            
+        case .addFavorites:
+            presentGFAlertOnMainThread(title: "Success!",
+                                       message: "Başarıyla favorilere eklendi",
+                                       buttonTitle: "OK")
             
         case .filterableFollowers(let followers):
             updateDataSource(on: followers)

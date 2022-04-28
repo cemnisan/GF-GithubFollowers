@@ -7,7 +7,7 @@
 
 import GFNetwork
 
-struct UserInfoPresentation {
+struct UserInfoPresentation: Codable {
     let login: String
     let avatarUrl: String
     var name: String?

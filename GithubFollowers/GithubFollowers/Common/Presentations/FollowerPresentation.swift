@@ -8,7 +8,7 @@
 import Foundation
 import GFNetwork
 
-struct FollowerPresentation: Hashable {
+struct FollowerPresentation: Codable, Hashable {
     
     var login: String
     var avatarURL: String

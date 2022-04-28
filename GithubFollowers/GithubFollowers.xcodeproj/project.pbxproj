@@ -25,6 +25,11 @@
 		7E6DD3DA2812E081001FC701 /* UITextField+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6DD3D92812E081001FC701 /* UITextField+Ex.swift */; };
 		7E9993152811BF72003C3723 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9993142811BF72003C3723 /* SearchViewModel.swift */; };
 		7E9993172811BF78003C3723 /* SearchViewModelContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9993162811BF78003C3723 /* SearchViewModelContracts.swift */; };
+		7E9CE59D28195FA200884B1D /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9CE59C28195FA200884B1D /* FavoritesViewModel.swift */; };
+		7E9CE59F28195FA800884B1D /* FavoritesViewModelContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9CE59E28195FA800884B1D /* FavoritesViewModelContracts.swift */; };
+		7E9CE5A22819602600884B1D /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9CE5A12819602600884B1D /* FavoritesTableViewCell.swift */; };
+		7E9CE5A4281961A300884B1D /* FavoritesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9CE5A3281961A300884B1D /* FavoritesCellViewModel.swift */; };
+		7E9CE5A928196D4200884B1D /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9CE5A828196D4200884B1D /* UserDefaultsManager.swift */; };
 		7EAB019D28117D3B00678417 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAB019C28117D3B00678417 /* AppDelegate.swift */; };
 		7EAB019F28117D3B00678417 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAB019E28117D3B00678417 /* SceneDelegate.swift */; };
 		7EAB01A128117D3B00678417 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAB01A028117D3B00678417 /* SearchViewController.swift */; };
@@ -64,6 +69,11 @@
 		7E6DD3D92812E081001FC701 /* UITextField+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ex.swift"; sourceTree = "<group>"; };
 		7E9993142811BF72003C3723 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		7E9993162811BF78003C3723 /* SearchViewModelContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelContracts.swift; sourceTree = "<group>"; };
+		7E9CE59C28195FA200884B1D /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
+		7E9CE59E28195FA800884B1D /* FavoritesViewModelContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModelContracts.swift; sourceTree = "<group>"; };
+		7E9CE5A12819602600884B1D /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
+		7E9CE5A3281961A300884B1D /* FavoritesCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCellViewModel.swift; sourceTree = "<group>"; };
+		7E9CE5A828196D4200884B1D /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		7EAB019928117D3B00678417 /* GithubFollowers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubFollowers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EAB019C28117D3B00678417 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EAB019E28117D3B00678417 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -177,6 +187,23 @@
 			path = Child;
 			sourceTree = "<group>";
 		};
+		7E9CE5A02819601300884B1D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7E9CE5A12819602600884B1D /* FavoritesTableViewCell.swift */,
+				7E9CE5A3281961A300884B1D /* FavoritesCellViewModel.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		7E9CE5A528196C3E00884B1D /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				7E9CE5A828196D4200884B1D /* UserDefaultsManager.swift */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
 		7EAB019028117D3B00678417 = {
 			isa = PBXGroup;
 			children = (
@@ -260,8 +287,11 @@
 		7EAB01BF2811930600678417 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
+				7E9CE5A02819601300884B1D /* Cells */,
 				7EAB01C02811930F00678417 /* FavoritesViewController.swift */,
 				7EAB01C22811932F00678417 /* FavoritesBuilder.swift */,
+				7E9CE59C28195FA200884B1D /* FavoritesViewModel.swift */,
+				7E9CE59E28195FA800884B1D /* FavoritesViewModelContracts.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -269,6 +299,7 @@
 		7EAB01C728119C4A00678417 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				7E9CE5A528196C3E00884B1D /* UserDefaults */,
 				7EAB01C828119C5700678417 /* Constants.swift */,
 				7E0F35D82812F9730003D114 /* ImageLoaders.swift */,
 			);
@@ -374,9 +405,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E45138728134DC70053C896 /* UserInfoViewModelContracts.swift in Sources */,
+				7E9CE5A22819602600884B1D /* FavoritesTableViewCell.swift in Sources */,
 				7EAB01A128117D3B00678417 /* SearchViewController.swift in Sources */,
 				7E45138E281359900053C896 /* UserInfoHeaderViewController.swift in Sources */,
 				7E45138328134D8A0053C896 /* UserInfoViewController.swift in Sources */,
+				7E9CE5A4281961A300884B1D /* FavoritesCellViewModel.swift in Sources */,
 				7EAB019D28117D3B00678417 /* AppDelegate.swift in Sources */,
 				7E6DD3D82812DEEC001FC701 /* UIViewController+Ex.swift in Sources */,
 				7E4880F0281424C900FC3EFD /* FollowerItemInfoViewController.swift in Sources */,
@@ -394,13 +427,16 @@
 				7EAB01CF2811A19600678417 /* FollowersViewController.swift in Sources */,
 				7EAB019F28117D3B00678417 /* SceneDelegate.swift in Sources */,
 				7E0F35D42812E7640003D114 /* FollowerPresentation.swift in Sources */,
+				7E9CE5A928196D4200884B1D /* UserDefaultsManager.swift in Sources */,
 				7E0F35D72812E9760003D114 /* FollowersCollectionViewCell.swift in Sources */,
 				7EAB01BA281190A400678417 /* SearchBuilder.swift in Sources */,
 				7E0F35DB2812FB8B0003D114 /* UIImageView+Ex.swift in Sources */,
+				7E9CE59D28195FA200884B1D /* FavoritesViewModel.swift in Sources */,
 				7EAB01C928119C5700678417 /* Constants.swift in Sources */,
 				7E45138928134DEE0053C896 /* UserInfoViewModel.swift in Sources */,
 				7E9993172811BF78003C3723 /* SearchViewModelContracts.swift in Sources */,
 				7E6DD3DA2812E081001FC701 /* UITextField+Ex.swift in Sources */,
+				7E9CE59F28195FA800884B1D /* FavoritesViewModelContracts.swift in Sources */,
 				7EAB01CC28119D2E00678417 /* UIView+Ex.swift in Sources */,
 				7EAB01D52811A1F700678417 /* FollowersViewModelContracts.swift in Sources */,
 				7E45138528134D9A0053C896 /* UserInfoBuilder.swift in Sources */,

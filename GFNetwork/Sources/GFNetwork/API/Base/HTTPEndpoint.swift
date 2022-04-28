@@ -26,9 +26,7 @@ extension HTTPEndpoint {
     }
     
     var header: [String: String]? {
-        return [
-            "Authorization" : "token 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"
-        ]
+        return nil
     }
     
     var body: [String: String]? {

@@ -6,11 +6,12 @@
 //
 
 import UIKit.UINavigationController
+import GFNetwork
 
 final class FavoritesBuilder {
     
     static func build() -> UINavigationController {
-        let viewController = FavoritesViewController()
+        let viewController        = FavoritesViewController(viewModel: FavoritesViewModel())
         viewController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
         
         return UINavigationController(rootViewController: viewController)

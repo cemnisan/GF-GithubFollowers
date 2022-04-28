@@ -18,12 +18,15 @@ final class FollowersViewModel: FollowersViewModelProtocol {
     private var filteredFollowers: [Follower] = []
     
     weak var delegate: FollowersViewModelDelegate?
-    private var service: FollowerServiceable
+    private var followersService: FollowerServiceable
+    private var userService: UserInfoServiceable
         
-    init(service: FollowerServiceable,
+    init(followersService: FollowerServiceable,
+         userService: UserInfoServiceable,
          username: String) {
-        self.service  = service
-        self.username = username
+        self.followersService  = followersService
+        self.userService       = userService
+        self.username          = username
     }
 }
 
@@ -32,10 +35,18 @@ extension FollowersViewModel {
     
     func loadFollowers() async {
         notify(.isLoading(true))
-        let result = await service.getUserFollowers(with: username, pageNumber: pageNumber)
+        let result = await followersService.getUserFollowers(with: username, pageNumber: pageNumber)
         notify(.isLoading(false))
         
         followersResults(results: result)
+    }
+    
+    func userDidTappedAddFavoritesButton() async {
+        notify(.isLoading(true))
+        let result = await userService.getUserInfo(with: username)
+        notify(.isLoading(false))
+        
+        userResults(results: result)
     }
 }
 
@@ -49,6 +60,17 @@ extension FollowersViewModel {
             self.followers.append(contentsOf: followers)
             let followersPresentation = self.followers.map { FollowerPresentation(follower: $0) }
             notify(.loadFollowers(followersPresentation))
+        case .failure(let error):
+            notify(.requestError(error))
+        }
+    }
+    
+    private func userResults(results: Result<User>) {
+        switch results {
+        case .success(let user):
+            let userPresentation = UserInfoPresentation(user: user)
+            addUserToUserDefaults(with: userPresentation)
+            notify(.addFavorites)
         case .failure(let error):
             notify(.requestError(error))
         }
@@ -88,6 +110,16 @@ extension FollowersViewModel {
         hasMoreFollowers = false
         followers.removeAll()
         filteredFollowers.removeAll()
+    }
+}
+
+// MARK: - UserDefaults Helper
+extension FollowersViewModel {
+    private func addUserToUserDefaults(with user: UserInfoPresentation) {
+        let userDefaults = UserDefaultsManager()
+        var favorites: [UserInfoPresentation] = userDefaults.getArrayFormLocal(key: .favorites)
+        favorites.append(user)
+        userDefaults.setArrayToLocal(key: .favorites, array: favorites)
     }
 }
 
