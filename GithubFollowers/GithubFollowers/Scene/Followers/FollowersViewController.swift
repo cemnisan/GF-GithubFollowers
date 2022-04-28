@@ -157,9 +157,12 @@ extension FollowersViewController: FollowersViewModelDelegate {
             
         case .addFavorites:
             presentGFAlertOnMainThread(title: "Success!",
-                                       message: "Başarıyla favorilere eklendi",
+                                       message: "You have successfully favorited this user 🎉",
                                        buttonTitle: "OK")
-            
+        case .isAlreadyInFavorites:
+            presentGFAlertOnMainThread(title: "Failure!",
+                                       message: "This user already exists in your favorites list!",
+                                       buttonTitle: "OK")
         case .filterableFollowers(let followers):
             updateDataSource(on: followers)
             

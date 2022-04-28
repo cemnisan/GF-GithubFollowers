@@ -70,7 +70,7 @@ extension FollowersViewModel {
         case .success(let user):
             let userPresentation = UserInfoPresentation(user: user)
             addUserToUserDefaults(with: userPresentation)
-            notify(.addFavorites)
+
         case .failure(let error):
             notify(.requestError(error))
         }
@@ -115,11 +115,20 @@ extension FollowersViewModel {
 
 // MARK: - UserDefaults Helper
 extension FollowersViewModel {
+    
     private func addUserToUserDefaults(with user: UserInfoPresentation) {
         let userDefaults = UserDefaultsManager()
         var favorites: [UserInfoPresentation] = userDefaults.getArrayFormLocal(key: .favorites)
+    
+        let isAlreadyInFavorites = favorites.contains { $0.login == user.login }
+        guard !isAlreadyInFavorites else {
+            notify(.isAlreadyInFavorites)
+            return
+        }
+    
         favorites.append(user)
         userDefaults.setArrayToLocal(key: .favorites, array: favorites)
+        notify(.addFavorites)
     }
 }
 

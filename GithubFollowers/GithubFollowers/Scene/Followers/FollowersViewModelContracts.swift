@@ -33,6 +33,7 @@ enum FollowersViewModelRouter {
 enum FollowersViewModelOutput {
     case loadFollowers([FollowerPresentation])
     case addFavorites
+    case isAlreadyInFavorites
     case isLoading(Bool)
     case requestError(HTTPRequestError)
     case filterableFollowers([FollowerPresentation])
