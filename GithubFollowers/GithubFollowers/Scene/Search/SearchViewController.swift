@@ -11,13 +11,11 @@ import GFComponents
 final class SearchViewController: UIViewController {
     
     private let logoImageView    = GFImageView(image: K.Image.logoImage)
-    private let searchTextField  = GFTextFields(placeholder: K.Title.searchPlaceholder)
+    private let searchTextField  = GFTextFields(placeholder: K.Search.searchPlaceholder)
     private let searchButton     = GFButton(backgrounColor: .systemGreen, title: K.Title.searchButtonTitle)
         
     var viewModel: SearchViewModel!
-    
-    private let padding: CGFloat = 50
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,10 +50,10 @@ extension SearchViewController {
     
     private func configureLogo() {
         NSLayoutConstraint.activate([
-            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 60),
+            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: K.Styling.logoImageTopAnchor),
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoImageView.widthAnchor.constraint(equalToConstant: 200),
-            logoImageView.heightAnchor.constraint(equalToConstant: 200)
+            logoImageView.widthAnchor.constraint(equalToConstant: K.Styling.logoImageSize),
+            logoImageView.heightAnchor.constraint(equalToConstant: K.Styling.logoImageSize)
         ])
     }
     
@@ -63,10 +61,10 @@ extension SearchViewController {
         searchTextField.delegate = self
         
         NSLayoutConstraint.activate([
-            searchTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: padding),
-            searchTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            searchTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            searchTextField.heightAnchor.constraint(equalToConstant: padding)
+            searchTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: K.Styling.maxPadding),
+            searchTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: K.Styling.maxPadding),
+            searchTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -K.Styling.maxPadding),
+            searchTextField.heightAnchor.constraint(equalToConstant: K.Styling.maxPadding)
         ])
     }
     
@@ -74,10 +72,10 @@ extension SearchViewController {
         searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            searchButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding),
-            searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            searchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            searchButton.heightAnchor.constraint(equalToConstant: padding)
+            searchButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -K.Styling.maxPadding),
+            searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: K.Styling.maxPadding),
+            searchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -K.Styling.maxPadding),
+            searchButton.heightAnchor.constraint(equalToConstant: K.Styling.maxPadding)
         ])
     }
     
@@ -92,9 +90,9 @@ extension SearchViewController {
     @objc
     private func searchButtonTapped() {
         guard !searchTextField.isUsernameEmpty else {
-            presentGFAlertOnMainThread(title: "Something Went Wrong",
-                                       message: "Please give a username?",
-                                       buttonTitle: "OK")
+            presentGFAlertOnMainThread(title: K.Alert.SearchError.title,
+                                       message: K.Alert.SearchError.message,
+                                       buttonTitle: K.Alert.SearchError.buttonTitle)
             return
         }
         searchTextField.resignFirstResponder()

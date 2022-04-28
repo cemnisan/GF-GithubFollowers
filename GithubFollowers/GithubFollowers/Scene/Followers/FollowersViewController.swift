@@ -66,7 +66,7 @@ extension FollowersViewController {
         searchController                                       = UISearchController()
         searchController.searchResultsUpdater                  = self
         searchController.searchBar.delegate                    = self
-        searchController.searchBar.placeholder                 = "Search for a username"
+        searchController.searchBar.placeholder                 = K.Search.followersPlaceHolder
         searchController.obscuresBackgroundDuringPresentation  = false
         navigationItem.searchController                        = searchController
     }
@@ -83,13 +83,13 @@ extension FollowersViewController {
         collectionView.backgroundColor = .systemBackground
         collectionView.delegate        = self
         collectionView.register(FollowersCollectionViewCell.self,
-                                forCellWithReuseIdentifier: FollowersCollectionViewCell.reuseID)
+                                forCellWithReuseIdentifier: K.ReuseIDs.followersCellID)
     }
     
     private func configureDataSource() {
         collectionViewDataSource = UICollectionViewDiffableDataSource<Section, FollowerPresentation>(collectionView: collectionView,
                                                                                                      cellProvider: { collectionView, indexPath, follower in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FollowersCollectionViewCell.reuseID,
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.ReuseIDs.followersCellID,
                                                           for: indexPath) as! FollowersCollectionViewCell
             cell.update(with: follower)
             
@@ -113,8 +113,8 @@ extension FollowersViewController {
     
     private func createThreeColumnFlowLayout() -> UICollectionViewFlowLayout {
         let width                       = view.bounds.width
-        let padding: CGFloat            = 12
-        let minumumItemSpacing: CGFloat = 10
+        let padding: CGFloat            = K.Styling.columnPadding
+        let minumumItemSpacing: CGFloat = K.Styling.columnSpacing
         let availableWidth              = width - (padding * 2) - (minumumItemSpacing * 2)
         let itemWidth                   = availableWidth / 3
         
@@ -135,7 +135,7 @@ extension FollowersViewController {
     
     private func updateView(if isFollowersEmpty: Bool) {
         if isFollowersEmpty {
-            let message = "This doesn't have any followers. Go follow them."
+            let message = K.EmptyView.message
             DispatchQueue.main.async { self.showEmptyStateView(with: message, in: self.view) }
             return
         }
@@ -155,21 +155,21 @@ extension FollowersViewController: FollowersViewModelDelegate {
             updateView(if: viewModel.isFollowersEmpty)
             updateDataSource(on: followers)
             
-        case .addFavorites:
-            presentGFAlertOnMainThread(title: "Success!",
-                                       message: "You have successfully favorited this user 🎉",
-                                       buttonTitle: "OK")
+        case .addedFavorites:
+            presentGFAlertOnMainThread(title: K.Alert.SuccessAddFavorites.title,
+                                       message: K.Alert.SuccessAddFavorites.message,
+                                       buttonTitle: K.Alert.SuccessAddFavorites.buttonTitle)
         case .isAlreadyInFavorites:
-            presentGFAlertOnMainThread(title: "Failure!",
-                                       message: "This user already exists in your favorites list!",
-                                       buttonTitle: "OK")
+            presentGFAlertOnMainThread(title: K.Alert.FailureAddFavorites.title,
+                                       message: K.Alert.FailureAddFavorites.message,
+                                       buttonTitle: K.Alert.FailureAddFavorites.buttonTitle)
         case .filterableFollowers(let followers):
             updateDataSource(on: followers)
             
         case .requestError(let error):
-            presentGFAlertOnMainThread(title: "Something went wrong",
+            presentGFAlertOnMainThread(title: K.Alert.RequestError.title,
                                        message: error.localizedDescription,
-                                       buttonTitle: "OK")
+                                       buttonTitle: K.Alert.RequestError.buttonTitle)
         }
     }
 }
@@ -178,11 +178,11 @@ extension FollowersViewController: FollowersViewModelDelegate {
 extension FollowersViewController {
     
     func navigate(to router: FollowersViewModelRouter) {
-        
         switch router {
-        case .userInfo(let viewModel):
+        case .toUserInfo(let viewModel):
             let viewController = UserInfoBuilder.build(with: viewModel, delegate: self)
             searchController.isActive = false
+            
             show(viewController, sender: nil)
         }
     }
@@ -226,7 +226,7 @@ extension FollowersViewController: UICollectionViewDelegate {
         if offsetY > contentHeight - height {
             guard !viewModel.hasMoreFollowers else { return }
             
-            viewModel.pageNumber += 1
+            viewModel.increasePageNumber()
             bindFollowers()
         }
     }
@@ -239,8 +239,9 @@ extension FollowersViewController: UserInfoViewControllerDelegate {
         viewModel.username            = username
         title                         = username
         viewModel.followersDidLoad()
-        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
-        
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0),
+                                    at: .top,
+                                    animated: true)
         bindFollowers()
     }
 }

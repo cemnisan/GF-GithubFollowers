@@ -9,14 +9,10 @@ import UIKit
 import GFComponents
 
 final class FollowersCollectionViewCell: UICollectionViewCell {
-    
-    static let reuseID = "followersCell"
-    
+        
     private let userImageView     = GFImageView(frame: .zero)
     private let usernameLabel     = GFTitleLabel(textAlignment: .center, fontSize: 16)
-    
-    let padding: CGFloat = 8
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -45,20 +41,20 @@ extension FollowersCollectionViewCell {
     
     private func configureImageView() {
         NSLayoutConstraint.activate([
-            userImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
-            userImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            userImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            userImageView.widthAnchor.constraint(equalToConstant: 123),
-            userImageView.heightAnchor.constraint(equalToConstant: 123)
+            userImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: K.Styling.minPadding),
+            userImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: K.Styling.minPadding),
+            userImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -K.Styling.minPadding),
+            userImageView.widthAnchor.constraint(equalToConstant: K.Styling.followersImageSize),
+            userImageView.heightAnchor.constraint(equalToConstant: K.Styling.followersImageSize)
         ])
     }
     
     private func configureUsernameLabel() {
         NSLayoutConstraint.activate([
-            usernameLabel.topAnchor.constraint(equalTo: userImageView.bottomAnchor, constant: padding),
-            usernameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            usernameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            usernameLabel.heightAnchor.constraint(equalToConstant: 20)
+            usernameLabel.topAnchor.constraint(equalTo: userImageView.bottomAnchor, constant: K.Styling.minPadding),
+            usernameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: K.Styling.minPadding),
+            usernameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -K.Styling.minPadding),
+            usernameLabel.heightAnchor.constraint(equalToConstant: K.Styling.midPadding)
         ])
     }
 }

@@ -13,7 +13,7 @@ final class UserInfoHeaderViewController: UIViewController {
     private let userImageView       = GFImageView(frame: .zero)
     private let usernameLabel       = GFTitleLabel(textAlignment: .left, fontSize: 34)
     private let nameLabel           = GFSecondaryLabel(fontSize: 18)
-    private let locationImageView   = GFImageView(image: UIImage(systemName: "mappin.and.ellipse")!)
+    private let locationImageView   = GFImageView(image: K.Image.locationImageView)
     private let locationLabel       = GFSecondaryLabel(fontSize: 18)
     private let bioLabel            = GFBodyLabel(textAlignment: .left)
     

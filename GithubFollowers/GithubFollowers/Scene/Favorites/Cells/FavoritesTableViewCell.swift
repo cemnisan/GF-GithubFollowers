@@ -9,8 +9,6 @@ import UIKit
 import GFComponents
 
 final class FavoritesTableViewCell: UITableViewCell {
-
-    static let reuseID = "FavoritesTableViewCell"
     
     private let userImageView = GFImageView(frame: .zero)
     private let usernameLabel = GFTitleLabel(textAlignment: .left, fontSize: 26)
@@ -32,6 +30,7 @@ final class FavoritesTableViewCell: UITableViewCell {
     }
 }
 
+// MARK: - Configure UIElement
 extension FavoritesTableViewCell {
     
     private func configure() {
@@ -46,9 +45,9 @@ extension FavoritesTableViewCell {
     private func configureImageView() {
         NSLayoutConstraint.activate([
             userImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            userImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            userImageView.heightAnchor.constraint(equalToConstant: 60),
-            userImageView.widthAnchor.constraint(equalToConstant: 60)
+            userImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: K.Styling.midPadding),
+            userImageView.heightAnchor.constraint(equalToConstant: K.Styling.favoritesImageSize),
+            userImageView.widthAnchor.constraint(equalToConstant: K.Styling.favoritesImageSize)
         ])
     }
     
@@ -60,6 +59,10 @@ extension FavoritesTableViewCell {
             usernameLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
+}
+
+// MARK: - Set UIElement
+extension FavoritesTableViewCell {
     
     func set(with viewModelCell: FavoritesCellViewModel) {
         usernameLabel.text = viewModelCell.username

@@ -72,7 +72,7 @@ extension UserInfoViewController {
         
         NSLayoutConstraint.activate([
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            contentView.heightAnchor.constraint(equalToConstant: 600)
+            contentView.heightAnchor.constraint(equalToConstant: K.Styling.scrollViewHeight)
         ])
     }
     
@@ -85,8 +85,8 @@ extension UserInfoViewController {
             $0.translatesAutoresizingMaskIntoConstraints = false
             
             NSLayoutConstraint.activate([
-                $0.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-                $0.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
+                $0.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: K.Styling.midPadding),
+                $0.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -K.Styling.midPadding)
             ])
         }
         
@@ -94,16 +94,16 @@ extension UserInfoViewController {
         
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 210),
+            headerView.heightAnchor.constraint(equalToConstant: K.Styling.headerViewHeight),
             
-            userReposView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 20),
-            userReposView.heightAnchor.constraint(equalToConstant: 140),
+            userReposView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: K.Styling.midPadding),
+            userReposView.heightAnchor.constraint(equalToConstant: K.Styling.userInfoViewHeight),
             
-            userFollowersView.topAnchor.constraint(equalTo: userReposView.bottomAnchor, constant: 20),
-            userFollowersView.heightAnchor.constraint(equalToConstant: 140),
+            userFollowersView.topAnchor.constraint(equalTo: userReposView.bottomAnchor, constant: K.Styling.midPadding),
+            userFollowersView.heightAnchor.constraint(equalToConstant: K.Styling.userInfoViewHeight),
             
-            dateLabel.topAnchor.constraint(equalTo: userFollowersView.bottomAnchor, constant: 20),
-            dateLabel.heightAnchor.constraint(equalToConstant: 50)
+            dateLabel.topAnchor.constraint(equalTo: userFollowersView.bottomAnchor, constant: K.Styling.midPadding),
+            dateLabel.heightAnchor.constraint(equalToConstant: K.Styling.dateLabelHeight)
         ])
     }
     
@@ -159,9 +159,9 @@ extension UserInfoViewController: RepoItemInfoDelegate {
     
     func githubProfileButtonTapped(for user: UserInfoPresentation) {
         guard let url = URL(string: user.htmlUrl) else {
-            presentGFAlertOnMainThread(title: "Something went wrong",
-                                       message: "The url attachted to this user is invalid.",
-                                       buttonTitle: "OK")
+            presentGFAlertOnMainThread(title: K.Alert.URLError.title,
+                                       message: K.Alert.URLError.message,
+                                       buttonTitle: K.Alert.URLError.buttonTitle)
             return
         }
         presentSafariViewController(with: url)

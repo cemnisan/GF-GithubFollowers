@@ -44,7 +44,7 @@ extension ItemInfoViewController {
     }
     
     private func configureViewController() {
-        view.layer.cornerRadius = 18
+        view.layer.cornerRadius = K.Styling.userInfoCornerRadius
         view.backgroundColor    = .secondarySystemBackground
     }
     
@@ -60,10 +60,10 @@ extension ItemInfoViewController {
         view.addSubviews(itemActionButton, stackView)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            stackView.heightAnchor.constraint(equalToConstant: 50)
+            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: K.Styling.midPadding),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: K.Styling.midPadding),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -K.Styling.midPadding),
+            stackView.heightAnchor.constraint(equalToConstant: K.Styling.userInfoStackViewHeight)
         ])
     }
     
@@ -71,10 +71,10 @@ extension ItemInfoViewController {
         itemActionButton.addTarget(self, action: #selector(itemActionButtonTapped), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            itemActionButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
-            itemActionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            itemActionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            itemActionButton.heightAnchor.constraint(equalToConstant: 44)
+            itemActionButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -K.Styling.midPadding),
+            itemActionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: K.Styling.midPadding),
+            itemActionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -K.Styling.midPadding),
+            itemActionButton.heightAnchor.constraint(equalToConstant: K.Styling.userInfoButtonHeight)
         ])
     }
 }

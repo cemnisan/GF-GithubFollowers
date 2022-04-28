@@ -41,6 +41,6 @@ extension FollowerItemInfoViewController {
     private func configure() {
         itemInfoViewOne.set(with: .followers, count: user.followers)
         itemInfoViewTwo.set(with: .following, count: user.following)
-        itemActionButton.set(with: .systemGreen, "Get Follower")
+        itemActionButton.set(with: .systemGreen, K.Button.getFollowerButtonTitle)
     }
 }

@@ -41,6 +41,6 @@ extension RepoItemInfoViewController {
     private func configure() {
         itemInfoViewOne.set(with: .repos, count: user.publicRepos)
         itemInfoViewTwo.set(with: .gists, count: user.publicGists)
-        itemActionButton.set(with: .systemPurple, "Github Profile")
+        itemActionButton.set(with: .systemPurple, K.Button.githubButtonTitle)
     }
 }

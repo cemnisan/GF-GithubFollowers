@@ -46,7 +46,7 @@ extension FavoritesViewController {
     
     private func configureViewController() {
         view.backgroundColor = .systemBackground
-        title                = "Favorites"
+        title                = K.Title.favoritesNavTitle
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -54,12 +54,12 @@ extension FavoritesViewController {
         view.addSubview(tableView)
       
         tableView.frame           = view.bounds
-        tableView.rowHeight       = 80
+        tableView.rowHeight       = K.Styling.tableViewRowHeight
         tableView.tableFooterView = UIView()
         tableView.dataSource      = self
         tableView.delegate        = self
         tableView.register(FavoritesTableViewCell.self,
-                           forCellReuseIdentifier: FavoritesTableViewCell.reuseID)
+                           forCellReuseIdentifier: K.ReuseIDs.favoritesCellID)
     }
     
     private func configureViewModel() {
@@ -98,7 +98,7 @@ extension FavoritesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: FavoritesTableViewCell.reuseID,
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.ReuseIDs.favoritesCellID,
                                                  for: indexPath) as! FavoritesTableViewCell
         let favoriteCellViewModel = viewModel.favoriteCellViewModel(at: indexPath.row)
         cell.set(with: favoriteCellViewModel)

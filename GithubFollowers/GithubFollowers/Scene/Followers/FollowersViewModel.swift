@@ -86,11 +86,11 @@ extension FollowersViewModel {
         let follower             = activeArray[index]
         let viewModel            = UserInfoViewModel(username: follower.login, service: UserInfoService())
         
-        delegate?.navigate(to: .userInfo(viewModel))
+        nofiy(.toUserInfo(viewModel))
     }
 }
 
-// MARK: - Follower Helper
+// MARK: - Followers Helper
 extension FollowersViewModel {
     
     func filterFollowersIfSearching(isSearching: Bool,
@@ -105,6 +105,10 @@ extension FollowersViewModel {
         }
     }
     
+    func increasePageNumber() {
+        pageNumber += 1
+    }
+    
     func followersDidLoad() {
         pageNumber       = 1
         hasMoreFollowers = false
@@ -117,18 +121,15 @@ extension FollowersViewModel {
 extension FollowersViewModel {
     
     private func addUserToUserDefaults(with user: UserInfoPresentation) {
-        let userDefaults = UserDefaultsManager()
+        let userDefaults                      = UserDefaultsManager()
         var favorites: [UserInfoPresentation] = userDefaults.getArrayFormLocal(key: .favorites)
-    
-        let isAlreadyInFavorites = favorites.contains { $0.login == user.login }
-        guard !isAlreadyInFavorites else {
-            notify(.isAlreadyInFavorites)
-            return
-        }
+        
+        let isAlreadyInFavorites              = favorites.contains { $0.login == user.login }
+        guard !isAlreadyInFavorites else { notify(.isAlreadyInFavorites); return }
     
         favorites.append(user)
         userDefaults.setArrayToLocal(key: .favorites, array: favorites)
-        notify(.addFavorites)
+        notify(.addedFavorites)
     }
 }
 
@@ -137,5 +138,9 @@ extension FollowersViewModel {
     
     private func notify(_ output: FollowersViewModelOutput) {
         delegate?.handleOutput(output: output)
+    }
+    
+    private func nofiy(_ navigate: FollowersViewModelRouter) {
+        delegate?.navigate(to: navigate)
     }
 }
