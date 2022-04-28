@@ -21,6 +21,7 @@
 		7E4880EC2814219F00FC3EFD /* ItemInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4880EB2814219F00FC3EFD /* ItemInfoViewController.swift */; };
 		7E4880EE2814243400FC3EFD /* RepoItemInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4880ED2814243400FC3EFD /* RepoItemInfoViewController.swift */; };
 		7E4880F0281424C900FC3EFD /* FollowerItemInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4880EF281424C900FC3EFD /* FollowerItemInfoViewController.swift */; };
+		7E4A9F21281B030B00CB35A2 /* Date+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4A9F20281B030B00CB35A2 /* Date+Ex.swift */; };
 		7E6DD3D82812DEEC001FC701 /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6DD3D72812DEEC001FC701 /* UIViewController+Ex.swift */; };
 		7E6DD3DA2812E081001FC701 /* UITextField+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6DD3D92812E081001FC701 /* UITextField+Ex.swift */; };
 		7E9993152811BF72003C3723 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9993142811BF72003C3723 /* SearchViewModel.swift */; };
@@ -65,6 +66,7 @@
 		7E4880EB2814219F00FC3EFD /* ItemInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfoViewController.swift; sourceTree = "<group>"; };
 		7E4880ED2814243400FC3EFD /* RepoItemInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoItemInfoViewController.swift; sourceTree = "<group>"; };
 		7E4880EF281424C900FC3EFD /* FollowerItemInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerItemInfoViewController.swift; sourceTree = "<group>"; };
+		7E4A9F20281B030B00CB35A2 /* Date+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ex.swift"; sourceTree = "<group>"; };
 		7E6DD3D72812DEEC001FC701 /* UIViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
 		7E6DD3D92812E081001FC701 /* UITextField+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ex.swift"; sourceTree = "<group>"; };
 		7E9993142811BF72003C3723 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				7E6DD3D92812E081001FC701 /* UITextField+Ex.swift */,
 				7E0F35DA2812FB8B0003D114 /* UIImageView+Ex.swift */,
 				7E45137F28133B270053C896 /* UISearchController+Ex.swift */,
+				7E4A9F20281B030B00CB35A2 /* Date+Ex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				7E6DD3DA2812E081001FC701 /* UITextField+Ex.swift in Sources */,
 				7E9CE59F28195FA800884B1D /* FavoritesViewModelContracts.swift in Sources */,
 				7EAB01CC28119D2E00678417 /* UIView+Ex.swift in Sources */,
+				7E4A9F21281B030B00CB35A2 /* Date+Ex.swift in Sources */,
 				7EAB01D52811A1F700678417 /* FollowersViewModelContracts.swift in Sources */,
 				7E45138528134D9A0053C896 /* UserInfoBuilder.swift in Sources */,
 				7EAB01D32811A1EF00678417 /* FollowersViewModel.swift in Sources */,

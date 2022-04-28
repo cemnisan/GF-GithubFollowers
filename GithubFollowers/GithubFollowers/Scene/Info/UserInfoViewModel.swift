@@ -6,11 +6,13 @@
 //
 
 import GFNetwork
+import Foundation
 
 final class UserInfoViewModel: UserInfoViewModelProtocol {
     
     private var username: String
-    @MainActor private var user: User!
+    private var user: User!
+    var userJoinedDate: Date!
     
     weak var delegate: UserInfoViewModelDelegate?
     private var service: UserInfoServiceable
@@ -38,7 +40,8 @@ extension UserInfoViewModel {
     @MainActor private func userInfoResults(results: Result<User>) {
         switch results {
         case .success(let user):
-            self.user = user
+            self.user            = user
+            self.userJoinedDate  = user.createdAt
             let userPresentation = UserInfoPresentation(user: self.user)
             notify(.loadUserInfo(userPresentation))
         case .failure(let error):

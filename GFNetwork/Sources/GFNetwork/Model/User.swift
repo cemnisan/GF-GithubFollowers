@@ -29,7 +29,7 @@ public struct User: Codable {
     public var bio: String?
     public var twitterUsername: String?
     public let publicRepos, publicGists, followers, following: Int
-    public let createdAt, updatedAt: String
+    public let createdAt, updatedAt: Date
 
     enum CodingKeys: String, CodingKey {
         case login, id

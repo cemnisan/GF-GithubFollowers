@@ -89,9 +89,7 @@ extension UserInfoViewController {
                 $0.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -K.Styling.midPadding)
             ])
         }
-        
-        dateLabel.text = "Since 2013"
-        
+            
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: contentView.topAnchor),
             headerView.heightAnchor.constraint(equalToConstant: K.Styling.headerViewHeight),
@@ -108,6 +106,8 @@ extension UserInfoViewController {
     }
     
     private func configureUIElements(with user: UserInfoPresentation) {
+        let userJoinedDate             = viewModel.userJoinedDate.convertToMonthYearFormat()
+        dateLabel.text                 = "Github since \(userJoinedDate)"
         let headerViewController       = UserInfoHeaderViewController(user: user)
         let repoItemViewController     = RepoItemInfoViewController(user: user, delegate: self)
         let followerItemViewController = FollowerItemInfoViewController(user: user, delegate: self)

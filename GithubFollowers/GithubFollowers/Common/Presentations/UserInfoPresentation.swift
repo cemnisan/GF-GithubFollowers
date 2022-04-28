@@ -6,6 +6,7 @@
 //
 
 import GFNetwork
+import Foundation
 
 struct UserInfoPresentation: Codable {
     let login: String
@@ -18,7 +19,7 @@ struct UserInfoPresentation: Codable {
     let htmlUrl: String
     let following: Int
     let followers: Int
-    let createdAt: String
+    let createdAt: Date
     
     init(user: User) {
         self.login          = user.login
