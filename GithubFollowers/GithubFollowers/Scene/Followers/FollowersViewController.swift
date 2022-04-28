@@ -61,7 +61,7 @@ extension FollowersViewController {
                                          action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem = doneButton
     }
-
+    
     private func configureSearchController() {
         searchController                                       = UISearchController()
         searchController.searchResultsUpdater                  = self
@@ -130,13 +130,13 @@ extension FollowersViewController {
         snapshot.appendSections([.main])
         snapshot.appendItems(followers)
         
-        DispatchQueue.main.async { self.collectionViewDataSource.apply(snapshot, animatingDifferences: true) }
+        collectionViewDataSource.apply(snapshot, animatingDifferences: true)
     }
     
     private func updateView(if isFollowersEmpty: Bool) {
         if isFollowersEmpty {
-            let message = K.EmptyView.message
-            DispatchQueue.main.async { self.showEmptyStateView(with: message, in: self.view) }
+            let message = K.EmptyView.followersMessage
+            showEmptyStateView(with: message, in: self.view)
             return
         }
     }

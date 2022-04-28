@@ -8,7 +8,6 @@
 import Foundation
 
 protocol UserInfoViewModelProtocol {
-    var userJoinedDate: Date! { get set }
     var delegate: UserInfoViewModelDelegate? { get set }
     
     func loadUserInfo() async

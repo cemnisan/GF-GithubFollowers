@@ -10,64 +10,65 @@ import UIKit
 struct K {
     
     struct ReuseIDs {
-        static let favoritesCellID              = "FavoritesTableViewCell"
-        static let followersCellID              = "followersCell"
+        static let favoritesCellID                  = "FavoritesTableViewCell"
+        static let followersCellID                  = "followersCell"
     }
-            
+                
     struct Image {
-        static let logoImage                    = UIImage(named: "gh-logo")!
-        static let locationImageView            = UIImage(systemName: "mappin.and.ellipse")!
-        static let emptyImageView               = UIImage(named: "empty-state-logo") 
+        static let logoImage                        = UIImage(named: "gh-logo")!
+        static let locationImageView                = UIImage(systemName: "mappin.and.ellipse")!
+        static let emptyImageView                   = UIImage(named: "empty-state-logo")!
     }
-            
+                
     struct Title {
-        static let searchButtonTitle            = "Get Followers"
-        static let favoritesNavTitle            = "Favorites"
+        static let searchButtonTitle                = "Get Followers"
+        static let favoritesNavTitle                = "Favorites"
     }
-            
+                
     struct Button {
-        static let githubButtonTitle            = "Github Profile"
-        static let getFollowerButtonTitle       = "Get Followers"
+        static let githubButtonTitle                = "Github Profile"
+        static let getFollowerButtonTitle           = "Get Followers"
     }
-            
+                
     struct Search {
-        static let followersPlaceHolder         = "Search for a username"
-        static let searchPlaceholder            = "Enter a username"
+        static let followersPlaceHolder             = "Search for a username"
+        static let searchPlaceholder                = "Enter a username"
     }
-            
+                
     struct Alert {
         struct URLError {
-            static let title                    = "Something went wrong"
-            static let message                  = "The url attachted to this user is invalid."
-            static let buttonTitle              = "OK"
+            static let title                        = "Something went wrong"
+            static let message                      = "The url attachted to this user is invalid."
+            static let buttonTitle                  = "OK"
         }
-                
+                    
         struct SuccessAddFavorites {
-            static let title                    = "Success!"
-            static let message                  = "You have successfully favorited this user 🎉"
-            static let buttonTitle              = "OK"
+            static let title                        = "Success!"
+            static let message                      = "You have successfully favorited this user 🎉"
+            static let buttonTitle                  = "OK"
         }
-                
+                    
         struct FailureAddFavorites {
-            static let title                    = "Failure!"
-            static let message                  = "This user already exists in your favorites list!"
-            static let buttonTitle              = "OK"
+            static let title                        = "Failure!"
+            static let message                      = "This user already exists in your favorites list!"
+            static let buttonTitle                  = "OK"
         }
-                
+                    
         struct RequestError {
-            static let title                    = "Something went wrong"
-            static let buttonTitle              = "OK"
+            static let title                        = "Something went wrong"
+            static let buttonTitle                  = "OK"
         }
-                
+                    
         struct SearchError {
-            static let title                    = "Something Went Wrong!"
-            static let message                  = "Please give a username"
-            static let buttonTitle              = "OK"
+            static let title                        = "Something Went Wrong"
+            static let message                      = "Please give a username"
+            static let buttonTitle                  = "OK"
         }
     }
             
     struct EmptyView {
-        static let message                      = "This doesn't have any followers. Go follow them."
+        static let followersMessage                 = "This doesn't have any followers. Go follow them."
+        static let favoritesMessage                 = "There are no favorite users here.\nAdd one on the follower screen."
     }
     
     struct Styling {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GFComponents
 
 final class FavoritesViewController: UIViewController {
     
@@ -36,12 +37,23 @@ final class FavoritesViewController: UIViewController {
     }
 }
 
+// MARK: - Configure
 extension FavoritesViewController {
     
     private func configure() {
         configureViewController()
         configureTableView()
         configureViewModel()
+    }
+    
+    private func configureView() {
+        if viewModel.numberOfFavorites() == 0 {
+            let emptyViewMessage = K.EmptyView.favoritesMessage
+            showEmptyStateView(with: emptyViewMessage, in: view)
+            return
+        } else {
+            self.view.bringSubviewToFront(tableView)
+        }
     }
     
     private func configureViewController() {
@@ -73,7 +85,10 @@ extension FavoritesViewController: FavoritesViewModelDelegate {
     func handleOutput(output: FavoritesViewModelOutput) {
         switch output {
         case .loadFavorites:
-            DispatchQueue.main.async { self.tableView.reloadData() }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.configureView()
+            }
         }
     }
 }
@@ -91,10 +106,11 @@ extension FavoritesViewController {
     }
 }
 
+// MARK: - UITableView - Data Source
 extension FavoritesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRowsInSection()
+        return viewModel.numberOfFavorites()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -107,6 +123,7 @@ extension FavoritesViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableView - Delegate
 extension FavoritesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -120,5 +137,6 @@ extension FavoritesViewController: UITableViewDelegate {
         
         viewModel.removeFavorite(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .left)
+        configureView()
     }
 }

@@ -11,8 +11,7 @@ import Foundation
 final class UserInfoViewModel: UserInfoViewModelProtocol {
     
     private var username: String
-    private var user: User!
-    var userJoinedDate: Date!
+    @MainActor private var user: User!
     
     weak var delegate: UserInfoViewModelDelegate?
     private var service: UserInfoServiceable
@@ -41,7 +40,6 @@ extension UserInfoViewModel {
         switch results {
         case .success(let user):
             self.user            = user
-            self.userJoinedDate  = user.createdAt
             let userPresentation = UserInfoPresentation(user: self.user)
             notify(.loadUserInfo(userPresentation))
         case .failure(let error):

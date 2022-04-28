@@ -10,7 +10,7 @@ import GFNetwork
 final class FavoritesViewModel {
     
     weak var delegate: FavoritesViewModelDelegate?
-    var favorites: [UserInfoPresentation] = []
+    private var favorites: [UserInfoPresentation] = []
     
     init() {}
 }
@@ -24,18 +24,12 @@ extension FavoritesViewModel: FavoritesViewModelProtocol
         self.favorites                        = favorites
         notify(.loadFavorites)
     }
-    
-    func removeFavorite(at index: Int) {
-        let userDefaults = UserDefaultsManager()
-        favorites.remove(at: index)
-        userDefaults.setArrayToLocal(key: .favorites, array: favorites)
-    }
 }
 
 // MARK: - TableView Operations
 extension FavoritesViewModel {
     
-    func numberOfRowsInSection() -> Int {
+    func numberOfFavorites() -> Int {
         return favorites.count
     }
     
@@ -54,9 +48,15 @@ extension FavoritesViewModel {
                                                     username: favorite.login)
         notify(.toFollowers(followersViewModel))
     }
+    
+    func removeFavorite(at index: Int) {
+        let userDefaults = UserDefaultsManager()
+        favorites.remove(at: index)
+        userDefaults.setArrayToLocal(key: .favorites, array: favorites)
+    }
 }
 
-// MARK: Output Helper
+// MARK: - Notify
 extension FavoritesViewModel {
     
     private func notify(_ output: FavoritesViewModelOutput) {

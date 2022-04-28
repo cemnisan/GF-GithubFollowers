@@ -20,7 +20,7 @@ final class FollowersViewModel: FollowersViewModelProtocol {
     weak var delegate: FollowersViewModelDelegate?
     private var followersService: FollowerServiceable
     private var userService: UserInfoServiceable
-        
+    
     init(followersService: FollowerServiceable,
          userService: UserInfoServiceable,
          username: String) {
@@ -38,7 +38,7 @@ extension FollowersViewModel {
         let result = await followersService.getUserFollowers(with: username, pageNumber: pageNumber)
         notify(.isLoading(false))
         
-        followersResults(results: result)
+        await followersResults(results: result)
     }
     
     func userDidTappedAddFavoritesButton() async {
@@ -46,14 +46,14 @@ extension FollowersViewModel {
         let result = await userService.getUserInfo(with: username)
         notify(.isLoading(false))
         
-        userResults(results: result)
+        await userResults(results: result)
     }
 }
 
 // MARK: - Results
 extension FollowersViewModel {
     
-    private func followersResults(results: Result<[Follower]>) {
+    @MainActor private func followersResults(results: Result<[Follower]>) {
         switch results {
         case .success(let followers):
             if followers.count == 0 { hasMoreFollowers = true }
@@ -65,12 +65,12 @@ extension FollowersViewModel {
         }
     }
     
-    private func userResults(results: Result<User>) {
+    @MainActor private func userResults(results: Result<User>) {
         switch results {
         case .success(let user):
             let userPresentation = UserInfoPresentation(user: user)
             addUserToUserDefaults(with: userPresentation)
-
+            
         case .failure(let error):
             notify(.requestError(error))
         }
@@ -93,8 +93,8 @@ extension FollowersViewModel {
 // MARK: - Followers Helper
 extension FollowersViewModel {
     
-    func filterFollowersIfSearching(isSearching: Bool,
-                                 searchText: String?) {
+    @MainActor func filterFollowersIfSearching(isSearching: Bool,
+                                               searchText: String?) {
         switch isSearching {
         case true:
             filteredFollowers = followers.filter { $0.login.lowercased().contains(searchText!.lowercased()) }
@@ -126,7 +126,7 @@ extension FollowersViewModel {
         
         let isAlreadyInFavorites              = favorites.contains { $0.login == user.login }
         guard !isAlreadyInFavorites else { notify(.isAlreadyInFavorites); return }
-    
+        
         favorites.append(user)
         userDefaults.setArrayToLocal(key: .favorites, array: favorites)
         notify(.addedFavorites)

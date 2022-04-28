@@ -9,7 +9,7 @@ import UIKit.UIView
 
 public final class GFEmptyStateView: UIView {
     
-    private let messageLabel  = GFTitleLabel(textAlignment: .center, fontSize: 28)
+    private let messageLabel  = GFTitleLabel(textAlignment: .center, fontSize: 24)
     private let logoImageView = GFImageView(image: #imageLiteral(resourceName: "empty-state-logo"))
     
     public override init(frame: CGRect) {
@@ -39,13 +39,13 @@ extension GFEmptyStateView {
     }
     
     private func configureMessageLabel() {
-        messageLabel.numberOfLines = 3
+        messageLabel.numberOfLines = 5
         messageLabel.textColor     = .secondaryLabel
         
         NSLayoutConstraint.activate([
             messageLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -150),
-            messageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40),
-            messageLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40),
+            messageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            messageLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             messageLabel.heightAnchor.constraint(equalToConstant: 200)
         ])
     }

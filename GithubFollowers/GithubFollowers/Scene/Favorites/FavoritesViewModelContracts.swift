@@ -14,7 +14,7 @@ protocol FavoritesViewModelProtocol {
     func removeFavorite(at index: Int)
     
     func favoriteCellViewModel(at index: Int) -> FavoritesCellViewModel
-    func numberOfRowsInSection() -> Int
+    func numberOfFavorites() -> Int
     func selectedFavorite(at index: Int)
 }
 
